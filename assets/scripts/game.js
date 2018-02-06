@@ -1,6 +1,8 @@
+
 'use strict'
 
-const brd = ['', '', '', '', '', '', '', '', '']
+let brd = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+let over = false
 
 // writes player input to board
 const play = function (brd, user, index) {
@@ -12,7 +14,7 @@ const play = function (brd, user, index) {
 const drawCheck = function (brd) {
   let draw = true
   for (let i = 0; i < brd.length; i++) {
-    if (brd[i] === '') {
+    if (brd[i] === ' ') {
       draw = false
     }
   }
@@ -36,6 +38,56 @@ const findWin = function (brd, winGroups, user) {
   }
 }
 
+// Prints board to ascii board to console
+const printBoard = function () {
+  console.log(brd[0] + '|' + brd[1] + '|' + brd[2])
+  console.log('-----')
+  console.log(brd[3] + '|' + brd[4] + '|' + brd[5])
+  console.log('-----')
+  console.log(brd[6] + '|' + brd[7] + '|' + brd[8])
+}
+
+const moveEntry = function (user, index) {
+  // initialize variables
+  const winGroups = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ]
+  // write move to board
+  brd = play(brd, user, index)
+  // print board to console
+  printBoard()
+  // check to see if move is a winning play
+  const winLine = findWin(brd, winGroups, user)
+  // If game is won-> return winning line, if game is draw-> end, otherwise next turn
+  if (winLine !== undefined) {
+    over = true
+    return user + ' wins!' + 'Winning positions are: ' + winLine
+  } else if (drawCheck(brd)) {
+    over = true
+    return 'Game is a Draw!'
+  } else {
+    return user + ' has played! Next player go!'
+  }
+}
+
+// Commented out code below is for testing
+// moveEntry('x', 4)
+// moveEntry('o', 0)
+// moveEntry('x', 2)
+// moveEntry('o', 6)
+// moveEntry('x', 3)
+// moveEntry('o', 5)
+// moveEntry('x', 1)
+// moveEntry('o', 7)
+// moveEntry('x', 8)
+
 // const winGroups = [
 //   [0, 1, 2],
 //   [3, 4, 5],
@@ -46,7 +98,7 @@ const findWin = function (brd, winGroups, user) {
 //   [0, 4, 8],
 //   [2, 4, 6]
 // ]
-//
+// //
 // play(brd, 'x', 0)
 // play(brd, 'x', 1)
 // play(brd, 'x', 2)
