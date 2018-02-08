@@ -12,7 +12,21 @@ const signUpFailure = function (error) {
   console.log(error)
 }
 
+const signInSuccess = function (data) {
+  $('#account-message').text('Signed in successfully!')
+  $('#account-message').css('background-color', 'green')
+  console.log(data)
+}
+
+const signInFailure = function (error) {
+  $('#account-message').text('Error on signing in')
+  $('#account-message').css('background-color', 'red')
+  console.log(error)
+}
+
 module.exports = {
   signUpSuccess,
-  signUpFailure
+  signUpFailure,
+  signInSuccess,
+  signInFailure
 }
