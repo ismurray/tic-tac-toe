@@ -21,7 +21,11 @@ const game = {
 const validMove = function (board, index) {
   if (board[index] === ' ') {
     return true
+  } else if (game.over === true) {
+    console.log('You cannot keep playing after the game is over!')
+    return false
   } else {
+    console.log('You can only play in an empty space! Try again.')
     return false
   }
 }
@@ -29,10 +33,12 @@ const validMove = function (board, index) {
 // writes player input to board
 const play = function (board, user, index) {
   if (game.over === false) {
+    // update internal board
     board[index] = user
+    // update visual board
+    const spotClass = '#mark' + index
+    $(spotClass).text('[' + game.user + ']')
     return board
-  } else {
-    console.log('You cannot keep playing after the game is over!')
   }
 }
 
@@ -66,7 +72,6 @@ const findWin = function (board, winGroups, user) {
 
 // toggles the current user from 'x' to 'o' and vice versa
 const turnSwitch = function (user) {
-  console.log('user was ' + user)
   user === 'x' ? game.user = 'o' : game.user = 'x'
   return user
 }
@@ -83,7 +88,8 @@ const printBoard = function () {
 const moveEntry = function (user, index) {
   // confirm move validity
   if (!validMove(game.board, index)) {
-    return 'You can only play in an empty space! Try again.'
+    // console.log('You can only play in an empty space! Try again.')
+    return
   }
   // write move to game.board
   game.board = play(game.board, user, index)
@@ -94,14 +100,14 @@ const moveEntry = function (user, index) {
   // If game is won-> return winning line, if game is draw-> end, otherwise next user's turn
   if (winLine !== undefined) {
     game.over = true
-    return user + ' wins!' + 'Winning positions are: ' + winLine
+    console.log(user + ' wins!' + 'Winning positions are: ' + winLine)
   } else if (drawCheck(game.board)) {
     game.over = true
-    return 'Game is a Draw!'
+    console.log('Game is a Draw!')
   } else {
     console.log(user + ' has played!')
     // Game continues-> switch to next player's turn
-    game.user = turnSwitch(user)
+    turnSwitch(user)
     return game.user + ', now it\'s your turn!'
   }
 }

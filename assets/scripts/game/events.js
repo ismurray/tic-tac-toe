@@ -3,10 +3,9 @@
 const engine = require('./engine.js')
 
 const onMakePlay = function () {
-  console.log('You clicked me!')
-  $(this).text('[' + engine.game.user + ']')
-  engine.turnSwitch(engine.game.user)
-  console.log(engine.game.user)
+  const index = this.getAttribute('data-id')
+  engine.moveEntry(engine.game.user, index)
+  // engine.turnSwitch(engine.game.user)
 }
 
 const addHandlers = () => {
