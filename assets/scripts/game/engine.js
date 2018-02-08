@@ -19,11 +19,11 @@ const game = {
 
 // Checks whether player input is a valid move
 const validMove = function (board, index) {
-  if (board[index] === ' ') {
-    return true
-  } else if (game.over === true) {
+  if (game.over === true) {
     console.log('You cannot keep playing after the game is over!')
     return false
+  } else if (board[index] === ' ') {
+    return true
   } else {
     console.log('You can only play in an empty space! Try again.')
     return false
@@ -77,13 +77,13 @@ const turnSwitch = function (user) {
 }
 
 // Prints board to ascii board to console
-const printBoard = function () {
-  console.log(game.board[0] + '|' + game.board[1] + '|' + game.board[2])
-  console.log('-----')
-  console.log(game.board[3] + '|' + game.board[4] + '|' + game.board[5])
-  console.log('-----')
-  console.log(game.board[6] + '|' + game.board[7] + '|' + game.board[8])
-}
+// const printBoard = function () {
+//   console.log(game.board[0] + '|' + game.board[1] + '|' + game.board[2])
+//   console.log('-----')
+//   console.log(game.board[3] + '|' + game.board[4] + '|' + game.board[5])
+//   console.log('-----')
+//   console.log(game.board[6] + '|' + game.board[7] + '|' + game.board[8])
+// }
 
 const moveEntry = function (user, index) {
   // confirm move validity
@@ -94,7 +94,7 @@ const moveEntry = function (user, index) {
   // write move to game.board
   game.board = play(game.board, user, index)
   // print game.board to console
-  printBoard()
+  // printBoard()
   // check to see if move is a winning play
   const winLine = findWin(game.board, game.winGroups, user)
   // If game is won-> return winning line, if game is draw-> end, otherwise next user's turn
@@ -108,12 +108,9 @@ const moveEntry = function (user, index) {
     console.log(user + ' has played!')
     // Game continues-> switch to next player's turn
     turnSwitch(user)
-    return game.user + ', now it\'s your turn!'
+    console.log(game.user + ', now it\'s your turn!')
   }
 }
-
-// Commented out code below is for testing
-// moveEntry(user, 4)
 
 module.exports = {
   game,
