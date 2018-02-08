@@ -67,7 +67,7 @@ const findWin = function (board, winGroups, user) {
 // toggles the current user from 'x' to 'o' and vice versa
 const turnSwitch = function (user) {
   console.log('user was ' + user)
-  user === 'x' ? user = 'o' : user = 'x'
+  user === 'x' ? game.user = 'o' : game.user = 'x'
   return user
 }
 
@@ -108,3 +108,9 @@ const moveEntry = function (user, index) {
 
 // Commented out code below is for testing
 // moveEntry(user, 4)
+
+module.exports = {
+  game,
+  turnSwitch,
+  moveEntry
+}
