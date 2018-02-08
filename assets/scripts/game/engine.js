@@ -106,7 +106,5 @@ const moveEntry = function (user, index) {
 }
 
 module.exports = {
-  game,
-  turnSwitch,
   moveEntry
 }
