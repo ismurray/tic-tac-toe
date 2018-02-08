@@ -105,6 +105,17 @@ const moveEntry = function (user, index) {
   }
 }
 
+// Resets the internal board and variables to initial values, and calls
+// ui function that resets the visual board
+const newGame = function () {
+  game.board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+  game.user = 'X'
+  game.over = false
+  ui.newGameReset()
+}
+
 module.exports = {
-  moveEntry
+  moveEntry,
+  game,
+  newGame
 }

@@ -7,8 +7,14 @@ const onMakePlay = function () {
   engine.moveEntry(engine.game.user, index)
 }
 
+const onNewGame = function () {
+  event.preventDefault()
+  engine.newGame()
+}
+
 const addHandlers = () => {
   $('.boardSpot').on('click', onMakePlay)
+  $('#new-game').on('click', onNewGame)
 }
 
 module.exports = {
