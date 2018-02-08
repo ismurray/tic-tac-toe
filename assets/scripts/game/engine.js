@@ -1,10 +1,12 @@
 
 'use strict'
 
+const ui = require('./ui.js')
+
 const game = {
   board: [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
   over: false,
-  user: 'x',
+  user: 'X',
   winGroups: [
     [0, 1, 2],
     [3, 4, 5],
@@ -20,12 +22,12 @@ const game = {
 // Checks whether player input is a valid move
 const validMove = function (board, index) {
   if (game.over === true) {
-    console.log('You cannot keep playing after the game is over!')
+    ui.movePlayFailure('You cannot keep playing after the game is over! Start a new game!')
     return false
   } else if (board[index] === ' ') {
     return true
   } else {
-    console.log('You can only play in an empty space! Try again.')
+    ui.movePlayFailure('You can only play in an empty space! Try a different spot.')
     return false
   }
 }
@@ -72,43 +74,34 @@ const findWin = function (board, winGroups, user) {
 
 // toggles the current user from 'x' to 'o' and vice versa
 const turnSwitch = function (user) {
-  user === 'x' ? game.user = 'o' : game.user = 'x'
+  user === 'X' ? game.user = 'O' : game.user = 'X'
   return user
 }
-
-// Prints board to ascii board to console
-// const printBoard = function () {
-//   console.log(game.board[0] + '|' + game.board[1] + '|' + game.board[2])
-//   console.log('-----')
-//   console.log(game.board[3] + '|' + game.board[4] + '|' + game.board[5])
-//   console.log('-----')
-//   console.log(game.board[6] + '|' + game.board[7] + '|' + game.board[8])
-// }
 
 const moveEntry = function (user, index) {
   // confirm move validity
   if (!validMove(game.board, index)) {
-    // console.log('You can only play in an empty space! Try again.')
     return
   }
   // write move to game.board
   game.board = play(game.board, user, index)
-  // print game.board to console
-  // printBoard()
   // check to see if move is a winning play
   const winLine = findWin(game.board, game.winGroups, user)
   // If game is won-> return winning line, if game is draw-> end, otherwise next user's turn
   if (winLine !== undefined) {
     game.over = true
-    console.log(user + ' wins!' + 'Winning positions are: ' + winLine)
+    ui.movePlaySuccess('')
+    ui.winMessage(user + ' wins! Winning positions are: ' + winLine)
   } else if (drawCheck(game.board)) {
     game.over = true
-    console.log('Game is a Draw!')
+    ui.movePlaySuccess('')
+    ui.drawMessage('Game is a Draw! Try a new game!')
   } else {
-    console.log(user + ' has played!')
+    const lastUser = user
     // Game continues-> switch to next player's turn
     turnSwitch(user)
-    console.log(game.user + ', now it\'s your turn!')
+    const text = 'Player ' + lastUser + ' has made their move! Player ' + game.user + ', now it\'s your turn!'
+    ui.movePlaySuccess(text)
   }
 }
 
