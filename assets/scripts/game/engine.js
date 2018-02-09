@@ -2,12 +2,14 @@
 'use strict'
 
 const gameUI = require('./ui.js')
+const gameAPI = require('./api.js')
+const store = require('../store')
 
 const game = {
   board: ['', '', '', '', '', '', '', '', ''],
   over: false,
   id: null,
-  user: 'X',
+  user: 'x',
   winGroups: [
     [0, 1, 2],
     [3, 4, 5],
@@ -23,12 +25,15 @@ const game = {
 // sets internal game object to match newly created game from API
 const createNewGame = function (data) {
   const createGame = data.game
+  console.log(data)
   game.board = createGame.cells
   game.id = createGame.id
   game.over = createGame.over
-  game.user = 'X'
+  game.user = 'x'
   gameUI.newGameReset()
   gameUI.startGameSuccess()
+  store.gameId = data.game.id
+  console.log('store.gameId', store.gameId)
 }
 
 // Checks whether player input is a valid move
@@ -52,6 +57,9 @@ const play = function (board, user, index) {
     // update visual board
     const spotClass = '#mark' + index
     $(spotClass).text('[' + game.user + ']')
+    // update API board
+    console.log(index, game.user, false)
+    console.log(gameAPI.updateBoard(index, game.user, false))
     return board
   }
 }
@@ -86,7 +94,7 @@ const findWin = function (board, winGroups, user) {
 
 // toggles the current user from 'x' to 'o' and vice versa
 const turnSwitch = function (user) {
-  user === 'X' ? game.user = 'O' : game.user = 'X'
+  user === 'x' ? game.user = 'o' : game.user = 'x'
   return user
 }
 
@@ -102,10 +110,14 @@ const moveEntry = function (user, index) {
   // If game is won-> return winning line, if game is draw-> end, otherwise next user's turn
   if (winLine !== undefined) {
     game.over = true
+    // update API game to over
+    console.log(gameAPI.updateBoard(index, game.user, true))
     gameUI.movePlaySuccess('')
     gameUI.winMessage(user + ' wins! Winning positions are: ' + winLine)
   } else if (drawCheck(game.board)) {
     game.over = true
+    // update API game to over
+    console.log(gameAPI.updateBoard(index, game.user, true))
     gameUI.movePlaySuccess('')
     gameUI.drawMessage('Game is a Draw! Try a new game!')
   } else {
@@ -121,7 +133,7 @@ const moveEntry = function (user, index) {
 // gameUI function that resets the visual board
 const newGame = function () {
   game.board = ['', '', '', '', '', '', '', '', '']
-  game.user = 'X'
+  game.user = 'x'
   game.over = false
   gameUI.newGameReset()
 }

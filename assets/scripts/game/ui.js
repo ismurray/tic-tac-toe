@@ -1,6 +1,7 @@
 'use strict'
 
-// const gameEvents = require('./game/events.js')
+// const engine = require('./engine.js')
+const store = require('../store')
 
 const movePlaySuccess = function (text) {
   $('#game-message').text(text)
