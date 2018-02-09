@@ -20,13 +20,14 @@ const game = {
   ]
 }
 
+// sets internal game object to match newly created game from API
 const createNewGame = function (data) {
   const createGame = data.game
   game.board = createGame.cells
   game.id = createGame.id
   game.over = createGame.over
-  console.log('api game is ', createGame)
-  console.log('internal game is ', game)
+  game.user = 'X'
+  ui.newGameReset()
 }
 
 // Checks whether player input is a valid move
