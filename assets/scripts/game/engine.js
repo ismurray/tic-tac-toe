@@ -31,8 +31,8 @@ const createNewGame = function (data) {
   game.over = createGame.over
   game.user = 'x'
   gameUI.newGameReset()
-  gameUI.startGameSuccess()
   store.gameId = data.game.id
+  gameUI.startGameSuccess()
   console.log('store.gameId', store.gameId)
 }
 
