@@ -1,6 +1,6 @@
 'use strict'
 
-// const engine = require('./engine.js')
+const engine = require('./engine.js')
 const store = require('../store')
 
 const movePlaySuccess = function (text) {
@@ -79,8 +79,20 @@ const getAGameSuccess = function (data) {
   if (!data.over) {
     $('#game-message').text('Game Loaded! Player ' + data.user + '\'s turn')
   } else if (data.over) {
-    $('#gameOver-message').text('Game Loaded! Player ' + data.user + ' won this game!')
-    $('#gameOver-message').css('background-color', 'green')
+    switch (data.winner) {
+      case 'x':
+        $('#gameOver-message').text('Game Loaded! Player X won this game!')
+        $('#gameOver-message').css('background-color', 'green')
+        break
+      case 'o':
+        $('#gameOver-message').text('Game Loaded! Player O won this game!')
+        $('#gameOver-message').css('background-color', 'green')
+        break
+      case 'draw':
+        $('#gameOver-message').text('Game Loaded! It was a draw!')
+        $('#gameOver-message').css('background-color', 'red')
+        break
+    }
   }
 }
 

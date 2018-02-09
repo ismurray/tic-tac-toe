@@ -36,6 +36,8 @@ const createNewGame = function (data) {
   console.log('store.gameId', store.gameId)
 }
 
+// Takes requested game from API, and writes it to the internal
+// board, and to the visual board
 const loadApiGame = function (data) {
   // set internal board to match api board
   const createGame = data.game
@@ -57,8 +59,44 @@ const loadApiGame = function (data) {
   // set current turn to correct user
   crosses > aughts ? game.user = 'o' : game.user = 'x'
   console.log(game.user)
+  whoWon()
   // set visual board to match API board
   gameUI.getAGameSuccess(game)
+}
+
+// const whoWon = function () {
+//   // only run this function if the game.over is true
+//   if (!game.over) {
+//     return
+//   }
+//   // initialize move lists and open spot counter
+//   let crosses = []
+//   let aughts = []
+//   let openSpots = 0
+//   // write index of all x and o moves to respective arrays and count empty spots
+//   for (let i = 0; i < game.board.length; i++) {
+//     if (game.board[i] === 'x') {
+//       crosses.push(i)
+//     } else if (game.board[i] === 'o') {
+//       aughts.push(i)
+//     } else if (game.board[i] === '') {
+//       openSpots++
+//     }
+//   }
+//   for (let i = 0; i < game.winGroups.length; i++) {
+//
+//   }
+// }
+
+// Check finished game to determin who won, or if draw
+const whoWon = function () {
+  if (findWin(game.board, game.winGroups, 'x') !== undefined) {
+    game.winner = 'x'
+  } else if (findWin(game.board, game.winGroups, 'o') !== undefined) {
+    game.winner = 'o'
+  } else if (drawCheck(game.board)) {
+    game.winner = 'draw'
+  }
 }
 
 // Checks whether player input is a valid move
@@ -169,5 +207,6 @@ module.exports = {
   game,
   newGame,
   createNewGame,
-  loadApiGame
+  loadApiGame,
+  whoWon
 }
