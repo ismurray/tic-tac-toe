@@ -28,11 +28,27 @@ const onGetGames = function (event) {
     .catch(gameUI.getGamesFailure)
 }
 
+const onEndedGames = function (event) {
+  event.preventDefault()
+  gameAPI.getEndedGames()
+    .then(gameUI.getGamesSuccess)
+    .catch(gameUI.getGamesFailure)
+}
+
+const onActiveGames = function (event) {
+  event.preventDefault()
+  gameAPI.getActiveGames()
+    .then(gameUI.getGamesSuccess)
+    .catch(gameUI.getGamesFailure)
+}
+
 const addHandlers = () => {
   $('.boardSpot').on('click', onMakePlay)
   $('#new-game').on('click', onNewGame)
   $('#start-game').on('submit', onStartGame)
   $('#get-all-games').on('submit', onGetGames)
+  $('#get-ended-games').on('submit', onEndedGames)
+  $('#get-active-games').on('submit', onActiveGames)
 }
 
 module.exports = {
