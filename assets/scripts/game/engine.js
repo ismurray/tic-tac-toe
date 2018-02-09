@@ -36,6 +36,31 @@ const createNewGame = function (data) {
   console.log('store.gameId', store.gameId)
 }
 
+const loadApiGame = function (data) {
+  // set internal board to match api board
+  const createGame = data.game
+  console.log(data)
+  game.board = createGame.cells
+  game.id = createGame.id
+  game.over = createGame.over
+  store.gameId = data.game.id
+  // Determine whose turn it is
+  let crosses = 0
+  let aughts = 0
+  for (let i = 0; i < game.board.length; i++) {
+    if (game.board[i] === 'x') {
+      crosses++
+    } else if (game.board[i] === 'o') {
+      aughts++
+    }
+  }
+  // set current turn to correct user
+  crosses > aughts ? game.user = 'o' : game.user = 'x'
+  console.log(game.user)
+  // set visual board to match API board
+  gameUI.getAGameSuccess(game)
+}
+
 // Checks whether player input is a valid move
 const validMove = function (board, index) {
   if (game.over === true) {
@@ -131,6 +156,7 @@ const moveEntry = function (user, index) {
 
 // Resets the internal board and variables to initial values, and calls
 // gameUI function that resets the visual board
+// TODO See if this func is unnecessary now. createNewGame probably does the job better
 const newGame = function () {
   game.board = ['', '', '', '', '', '', '', '', '']
   game.user = 'x'
@@ -142,5 +168,6 @@ module.exports = {
   moveEntry,
   game,
   newGame,
-  createNewGame
+  createNewGame,
+  loadApiGame
 }

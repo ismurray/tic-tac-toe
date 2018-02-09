@@ -59,6 +59,37 @@ const getGamesFailure = function (error) {
   console.log(error)
 }
 
+const getAGameSuccess = function (data) {
+  console.log(data)
+  $('#account-page-message').text('Game retrieved! See game board.')
+  $('#account-page-message').css('background-color', 'white')
+  $('#gameOver-message').text('')
+  $('#gameOver-message').css('background-color', 'white')
+  $('#game-message').text('')
+  $('#game-message').css('background-color', 'white')
+
+  for (let i = 0; i < data.board.length; i++) {
+    const spotClass = '#mark' + i
+    if (data.board[i] === '') {
+      $(spotClass).text('[ ]')
+    } else {
+      $(spotClass).text('[' + data.board[i] + ']')
+    }
+  }
+  if (!data.over) {
+    $('#game-message').text('Game Loaded! Player ' + data.user + '\'s turn')
+  } else if (data.over) {
+    $('#gameOver-message').text('Game Loaded! Player ' + data.user + ' won this game!')
+    $('#gameOver-message').css('background-color', 'green')
+  }
+}
+
+const getAGameFailure = function (error) {
+  $('#account-page-message').text('Error on getting that game!')
+  $('#account-page-message').css('background-color', 'red')
+  console.log(error)
+}
+
 module.exports = {
   movePlaySuccess,
   movePlayFailure,
@@ -68,5 +99,7 @@ module.exports = {
   startGameSuccess,
   startGameFailure,
   getGamesSuccess,
-  getGamesFailure
+  getGamesFailure,
+  getAGameSuccess,
+  getAGameFailure
 }

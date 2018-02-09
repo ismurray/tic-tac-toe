@@ -26,6 +26,17 @@ const getGames = function (data) {
   })
 }
 
+const getAGame = function (id) {
+  return $.ajax({
+    url: config.apiOrigin + '/games/' + id,
+    method: 'GET',
+    headers: {
+      contentType: 'application/json',
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 const getEndedGames = function (data) {
   return $.ajax({
     url: config.apiOrigin + '/games?over=true',
@@ -71,6 +82,7 @@ const updateBoard = function (index, user, over) {
 module.exports = {
   startGame,
   getGames,
+  getAGame,
   getEndedGames,
   getActiveGames,
   updateBoard
