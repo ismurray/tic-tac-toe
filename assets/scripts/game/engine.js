@@ -4,8 +4,9 @@
 const ui = require('./ui.js')
 
 const game = {
-  board: [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+  board: ["", "", "", "", "", "", "", "", ""],
   over: false,
+  id: null,
   user: 'X',
   winGroups: [
     [0, 1, 2],
@@ -19,12 +20,21 @@ const game = {
   ]
 }
 
+const createNewGame = function (data) {
+  const createGame = data.game
+  game.board = createGame.cells
+  game.id = createGame.id
+  game.over = createGame.over
+  console.log('api game is ', createGame)
+  console.log('internal game is ', game)
+}
+
 // Checks whether player input is a valid move
 const validMove = function (board, index) {
   if (game.over === true) {
     ui.movePlayFailure('You cannot keep playing after the game is over! Start a new game!')
     return false
-  } else if (board[index] === ' ') {
+  } else if (board[index] === "") {
     return true
   } else {
     ui.movePlayFailure('You can only play in an empty space! Try a different spot.')
@@ -48,7 +58,7 @@ const play = function (board, user, index) {
 const drawCheck = function (board) {
   let draw = true
   for (let i = 0; i < board.length; i++) {
-    if (board[i] === ' ') {
+    if (board[i] === "") {
       draw = false
     }
   }
@@ -108,7 +118,7 @@ const moveEntry = function (user, index) {
 // Resets the internal board and variables to initial values, and calls
 // ui function that resets the visual board
 const newGame = function () {
-  game.board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+  game.board = ["", "", "", "", "", "", "", "", ""]
   game.user = 'X'
   game.over = false
   ui.newGameReset()
@@ -117,5 +127,6 @@ const newGame = function () {
 module.exports = {
   moveEntry,
   game,
-  newGame
+  newGame,
+  createNewGame
 }

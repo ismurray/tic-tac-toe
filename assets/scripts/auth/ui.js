@@ -27,13 +27,13 @@ const signInFailure = function (error) {
 }
 
 const changePasswordSuccess = function () {
-  $('#message').text('Password changed successfully!')
-  $('#message').css('background-color', 'green')
+  $('#account-message').text('Password changed successfully!')
+  $('#account-message').css('background-color', 'green')
 }
 
 const changePasswordFailure = function (error) {
-  $('#message').text('Error on changing password')
-  $('#message').css('background-color', 'red')
+  $('#account-message').text('Error on changing password')
+  $('#account-message').css('background-color', 'red')
   console.log(error)
 }
 

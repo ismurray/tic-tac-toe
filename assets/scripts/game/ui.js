@@ -34,10 +34,15 @@ const newGameReset = function () {
   }
 }
 
+const startGameSuccess = function (data) {
+  console.log(data.game)
+}
+
 module.exports = {
   movePlaySuccess,
   movePlayFailure,
   winMessage,
   drawMessage,
-  newGameReset
+  newGameReset,
+  startGameSuccess
 }

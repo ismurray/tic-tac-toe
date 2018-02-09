@@ -1,17 +1,17 @@
 'use strict'
 
 const getFormFields = require('../../../lib/get-form-fields')
-const api = require('./api.js')
-const ui = require('./ui.js')
+const authAP = require('./api.js')
+const authUI = require('./ui.js')
 
 const onSignUp = function (event) {
   event.preventDefault()
 
   const data = getFormFields(this)
 
-  api.signUp(data)
-    .then(ui.signUpSuccess)
-    .catch(ui.signUpFailure)
+  authAP.signUp(data)
+    .then(authUI.signUpSuccess)
+    .catch(authUI.signUpFailure)
 }
 
 const onSignIn = function (event) {
@@ -19,25 +19,25 @@ const onSignIn = function (event) {
 
   const data = getFormFields(this)
 
-  api.signIn(data)
-    .then(ui.signInSuccess)
-    .catch(ui.signInFailure)
+  authAP.signIn(data)
+    .then(authUI.signInSuccess)
+    .catch(authUI.signInFailure)
 }
 
 const onChangePassword = function (event) {
   event.preventDefault()
 
   const data = getFormFields(this)
-  api.changePassword(data)
-    .then(ui.changePasswordSuccess)
-    .catch(ui.changePasswordFailure)
+  authAP.changePassword(data)
+    .then(authUI.changePasswordSuccess)
+    .catch(authUI.changePasswordFailure)
 }
 
 const onSignOut = function (event) {
   event.preventDefault()
-  api.signOut()
-    .then(ui.signOutSuccess)
-    .catch(ui.signOutFailure)
+  authAP.signOut()
+    .then(authUI.signOutSuccess)
+    .catch(authUI.signOutFailure)
 }
 
 const addHandlers = () => {
