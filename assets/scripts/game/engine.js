@@ -1,10 +1,10 @@
 
 'use strict'
 
-const ui = require('./ui.js')
+const gameUI = require('./ui.js')
 
 const game = {
-  board: ["", "", "", "", "", "", "", "", ""],
+  board: ['', '', '', '', '', '', '', '', ''],
   over: false,
   id: null,
   user: 'X',
@@ -27,18 +27,19 @@ const createNewGame = function (data) {
   game.id = createGame.id
   game.over = createGame.over
   game.user = 'X'
-  ui.newGameReset()
+  gameUI.newGameReset()
+  gameUI.startGameSuccess()
 }
 
 // Checks whether player input is a valid move
 const validMove = function (board, index) {
   if (game.over === true) {
-    ui.movePlayFailure('You cannot keep playing after the game is over! Start a new game!')
+    gameUI.movePlayFailure('You cannot keep playing after the game is over! Start a new game!')
     return false
-  } else if (board[index] === "") {
+  } else if (board[index] === '') {
     return true
   } else {
-    ui.movePlayFailure('You can only play in an empty space! Try a different spot.')
+    gameUI.movePlayFailure('You can only play in an empty space! Try a different spot.')
     return false
   }
 }
@@ -59,7 +60,7 @@ const play = function (board, user, index) {
 const drawCheck = function (board) {
   let draw = true
   for (let i = 0; i < board.length; i++) {
-    if (board[i] === "") {
+    if (board[i] === '') {
       draw = false
     }
   }
@@ -101,28 +102,28 @@ const moveEntry = function (user, index) {
   // If game is won-> return winning line, if game is draw-> end, otherwise next user's turn
   if (winLine !== undefined) {
     game.over = true
-    ui.movePlaySuccess('')
-    ui.winMessage(user + ' wins! Winning positions are: ' + winLine)
+    gameUI.movePlaySuccess('')
+    gameUI.winMessage(user + ' wins! Winning positions are: ' + winLine)
   } else if (drawCheck(game.board)) {
     game.over = true
-    ui.movePlaySuccess('')
-    ui.drawMessage('Game is a Draw! Try a new game!')
+    gameUI.movePlaySuccess('')
+    gameUI.drawMessage('Game is a Draw! Try a new game!')
   } else {
     const lastUser = user
     // Game continues-> switch to next player's turn
     turnSwitch(user)
     const text = 'Player ' + lastUser + ' has made their move! Player ' + game.user + ', now it\'s your turn!'
-    ui.movePlaySuccess(text)
+    gameUI.movePlaySuccess(text)
   }
 }
 
 // Resets the internal board and variables to initial values, and calls
-// ui function that resets the visual board
+// gameUI function that resets the visual board
 const newGame = function () {
-  game.board = ["", "", "", "", "", "", "", "", ""]
+  game.board = ['', '', '', '', '', '', '', '', '']
   game.user = 'X'
   game.over = false
-  ui.newGameReset()
+  gameUI.newGameReset()
 }
 
 module.exports = {

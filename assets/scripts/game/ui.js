@@ -35,7 +35,26 @@ const newGameReset = function () {
 }
 
 const startGameSuccess = function (data) {
-  console.log(data.game)
+  $('#account-page-message').text('You have started a game!')
+  $('#account-page-message').css('background-color', 'white')
+}
+
+const startGameFailure = function (error) {
+  $('#account-page-message').text('You must be signed in to start a game!')
+  $('#account-page-message').css('background-color', 'red')
+  console.log(error)
+}
+
+const getGamesSuccess = function (data) {
+  console.log(data)
+  $('#account-page-message').text('Games retrieved! See console.')
+  $('#account-page-message').css('background-color', 'white')
+}
+
+const getGamesFailure = function (error) {
+  $('#account-page-message').text('Error on getting games!')
+  $('#account-page-message').css('background-color', 'red')
+  console.log(error)
 }
 
 module.exports = {
@@ -44,5 +63,8 @@ module.exports = {
   winMessage,
   drawMessage,
   newGameReset,
-  startGameSuccess
+  startGameSuccess,
+  startGameFailure,
+  getGamesSuccess,
+  getGamesFailure
 }

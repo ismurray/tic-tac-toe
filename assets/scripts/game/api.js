@@ -14,6 +14,18 @@ const startGame = function (data) {
   })
 }
 
+const getGames = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/games',
+    method: 'GET',
+    headers: {
+      contentType: 'application/json',
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
-  startGame
+  startGame,
+  getGames
 }
