@@ -201,13 +201,17 @@ const allGameStats = function (data) {
       }
     }
   }
+  let winRate = (won / ended) * 100
+  if (won === 0) {
+    winRate = 0
+  }
   gameUI.textUpdateById('#total-games', total)
   gameUI.textUpdateById('#active-games', active)
   gameUI.textUpdateById('#ended-games', ended)
   gameUI.textUpdateById('#games-won', won)
   gameUI.textUpdateById('#games-lost', lost)
   gameUI.textUpdateById('#games-drawn', drew)
-  gameUI.textUpdateById('#winrate', won / (lost + drew))
+  gameUI.textUpdateById('#winrate', winRate)
 }
 
 // Resets the internal board and variables to initial values, and calls
