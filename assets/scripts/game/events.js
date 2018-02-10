@@ -16,11 +16,6 @@ const onStartGame = function (event) {
     .catch(gameUI.startGameFailure)
 }
 
-const onNewGame = function () {
-  event.preventDefault()
-  engine.newGame()
-}
-
 const onGetGames = function (event) {
   event.preventDefault()
   gameAPI.getGames()
@@ -59,7 +54,6 @@ const onAccountReturn = function () {
 
 const addHandlers = () => {
   $('.boardSpot').on('click', onMakePlay)
-  $('#new-game').on('click', onNewGame)
   $('#start-game').on('submit', onStartGame)
   $('#get-all-games').on('submit', onGetGames)
   $('#get-ended-games').on('submit', onEndedGames)

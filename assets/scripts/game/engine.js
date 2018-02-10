@@ -214,20 +214,9 @@ const allGameStats = function (data) {
   gameUI.textUpdateById('#winrate', winRate)
 }
 
-// Resets the internal board and variables to initial values, and calls
-// gameUI function that resets the visual board
-// TODO See if this func is unnecessary now. createNewGame probably does the job better
-const newGame = function () {
-  game.board = ['', '', '', '', '', '', '', '', '']
-  game.user = 'x'
-  game.over = false
-  gameUI.newGameReset()
-}
-
 module.exports = {
   moveEntry,
   game,
-  newGame,
   createNewGame,
   loadApiGame,
   whoWon,
