@@ -14,7 +14,7 @@
     <body class="container-fluid">
 
       <h1>Ian's Tic Tac Toe</h1>
-      <form id="hide-all" class="border">
+      <!-- <form id="hide-all" class="border">
         <fieldset>
           <input type="submit" value="Hide All">
         </fieldset>
@@ -23,31 +23,75 @@
         <fieldset>
           <input type="submit" value="Show All">
         </fieldset>
-      </form>
+      </form> -->
 
-<p id="account-message"></p>
+
 
       <div id="auth-wrapper">
         <h2>Account Entry:</h2>
+        <p id="account-message"></p>
 
-        <form id="sign-up" class="border">
-          <fieldset>
-            <legend>Sign up!</legend>
-            <input type="text" name="credentials[email]" placeholder="Email">
-            <input type="password" name="credentials[password]" placeholder="Password">
-            <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
-            <input type="submit" value="Sign up!">
-          </fieldset>
-        </form>
+        <!-- Button trigger modal -->
+        <button type="button" id="sign-up-button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signUpModal">
+          Sign Up
+        </button>
 
-        <form id="sign-in" class="border">
-          <fieldset>
-            <legend>Sign in</legend>
-            <input type="text" name="credentials[email]" placeholder="Email">
-            <input type="password" name="credentials[password]" placeholder="Password">
-            <input type="submit" value="Sign in">
-          </fieldset>
-        </form>
+        <!-- Modal -->
+        <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Sign Up to Create An Account</h4>
+              </div>
+              <div class="modal-body">
+
+                <form id="sign-up" class="border">
+                  <fieldset>
+                    <input type="text" name="credentials[email]" placeholder="Email">
+                    <input type="password" name="credentials[password]" placeholder="Password">
+                    <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+                    <input type="submit" value="Sign up!">
+                  </fieldset>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- Button trigger modal -->
+        <button type="button" id="sign-in-button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+          Sign In
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Sign In to an Existing Account</h4>
+              </div>
+              <div class="modal-body">
+
+                <form id="sign-in" class="border">
+                  <fieldset>
+                    <input type="text" name="credentials[email]" placeholder="Email">
+                    <input type="password" name="credentials[password]" placeholder="Password">
+                    <input type="submit" value="Sign in">
+                  </fieldset>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
 
 
 
@@ -65,10 +109,18 @@
           </fieldset>
         </form>
 
+        <form id="get-game" class="border">
+          <fieldset>
+            <legend>View a previous game by ID</legend>
+            <input type="text" placeholder="Game ID">
+            <input type="submit" value="View Game">
+          </fieldset>
+        </form>
+
         <form id="get-all-games" class="border">
           <fieldset>
             <legend>Retrieve Game Stats</legend>
-            <input type="submit" value="Get All Game Stats">
+            <input type="submit" value="Update Game Stats">
           </fieldset>
         </form>
 
@@ -135,14 +187,6 @@
 
         </div>
         <p>Current Game ID: <span id="current-game"></span></p>
-
-        <form id="get-game" class="border">
-          <fieldset>
-            <legend>View a previous game by ID</legend>
-            <input type="text" placeholder="Game ID">
-            <input type="submit" value="View Game">
-          </fieldset>
-        </form>
 
         <form id="return-to-acct" class="border">
           <fieldset>

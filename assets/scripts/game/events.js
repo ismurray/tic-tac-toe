@@ -48,8 +48,7 @@ const onActiveGames = function (event) {
 
 const onAccountReturn = function () {
   event.preventDefault()
-  $('#game-wrapper').hide('slow')
-  $('#account-wrapper').show('slow')
+  gameUI.accountReturn()
 }
 
 const addHandlers = () => {

@@ -59,8 +59,8 @@ const startGameFailure = function (error) {
 const getGamesSuccess = function (data) {
   const engine = require('./engine.js')
   engine.allGameStats(data)
-  $('#account-page-message').text('Games retrieved! See console.')
-  $('#account-page-message').css('background-color', 'white')
+  $('#account-page-message').text('Games stats retrieved!')
+  $('#account-page-message').css('background-color', 'green')
 }
 
 const getGamesFailure = function (error) {
@@ -71,13 +71,16 @@ const getGamesFailure = function (error) {
 
 const getAGameSuccess = function (data) {
   console.log(data)
-  $('#account-page-message').text('Game retrieved! See game board.')
-  $('#account-page-message').css('background-color', 'white')
+  $('#game-message').text('Game retrieved!')
+  $('#game-message').css('background-color', 'white')
   $('#gameOver-message').text('')
   $('#gameOver-message').css('background-color', 'white')
   $('#game-message').text('')
   $('#game-message').css('background-color', 'white')
   $('#current-game').text(store.gameId)
+  $('#account-wrapper').hide('slow')
+  $('#game-wrapper').show('slow')
+  $('#get-game').find('input:text').val('')
 
   for (let i = 0; i < data.board.length; i++) {
     const spotClass = '#mark' + i
@@ -113,6 +116,18 @@ const getAGameFailure = function (error) {
   console.log(error)
 }
 
+const clearMessages = function () {
+  $('#account-page-message').text('')
+  $('#account-page-message').css('background-color', 'white')
+}
+
+const accountReturn = function () {
+  $('#account-page-message').text('')
+  $('#account-page-message').css('background-color', 'white')
+  $('#game-wrapper').hide('slow')
+  $('#account-wrapper').show('slow')
+}
+
 module.exports = {
   movePlaySuccess,
   movePlayFailure,
@@ -125,5 +140,7 @@ module.exports = {
   getGamesFailure,
   getAGameSuccess,
   getAGameFailure,
-  textUpdateById
+  textUpdateById,
+  clearMessages,
+  accountReturn
 }

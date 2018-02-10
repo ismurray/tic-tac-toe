@@ -5,6 +5,9 @@ const store = require('../store')
 const signUpSuccess = function (data) {
   $('#account-message').text('Signed up successfully!')
   $('#account-message').css('background-color', 'green')
+  $('#sign-up-button').click()
+  $('#sign-up').find('input:text').val('')
+  $('#sign-up').find('input:password').val('')
 }
 
 const signUpFailure = function (error) {
@@ -20,6 +23,9 @@ const signInSuccess = function (data) {
   console.log(store.user)
   $('#auth-wrapper').hide('slow')
   $('#account-wrapper').show('slow')
+  $('#sign-in-button').click()
+  $('#sign-in').find('input:text').val('')
+  $('#sign-in').find('input:password').val('')
 }
 
 const signInFailure = function (error) {
@@ -29,13 +35,15 @@ const signInFailure = function (error) {
 }
 
 const changePasswordSuccess = function () {
-  $('#account-message').text('Password changed successfully!')
-  $('#account-message').css('background-color', 'green')
+  $('#account-page-message').text('Password changed successfully!')
+  $('#account-page-message').css('background-color', 'green')
+  $('#change-password').find('input:text').val('')
+  $('#change-password').find('input:password').val('')
 }
 
 const changePasswordFailure = function (error) {
-  $('#account-message').text('Error on changing password')
-  $('#account-message').css('background-color', 'red')
+  $('#account-page-message').text('Error on changing password')
+  $('#account-page-message').css('background-color', 'red')
   console.log(error)
 }
 
@@ -47,8 +55,8 @@ const signOutSuccess = function () {
 }
 
 const signOutFailure = function (error) {
-  $('#account-message').text('Error on Signing Out')
-  $('#account-message').css('background-color', 'red')
+  $('#account-page-message').text('Error on Signing Out')
+  $('#account-page-message').css('background-color', 'red')
   console.log(error)
 }
 
