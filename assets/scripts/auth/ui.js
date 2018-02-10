@@ -18,6 +18,8 @@ const signInSuccess = function (data) {
   $('#account-message').css('background-color', 'green')
   store.user = data.user
   console.log(store.user)
+  $('#auth-wrapper').hide('slow')
+  $('#account-wrapper').show('slow')
 }
 
 const signInFailure = function (error) {
@@ -40,6 +42,8 @@ const changePasswordFailure = function (error) {
 const signOutSuccess = function () {
   $('#account-message').text('Signed out successfully!')
   $('#account-message').css('background-color', 'green')
+  $('#auth-wrapper').show('slow')
+  $('#account-wrapper').hide('slow')
 }
 
 const signOutFailure = function (error) {

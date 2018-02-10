@@ -51,6 +51,12 @@ const onActiveGames = function (event) {
     .catch(gameUI.getGamesFailure)
 }
 
+const onAccountReturn = function () {
+  event.preventDefault()
+  $('#game-wrapper').hide('slow')
+  $('#account-wrapper').show('slow')
+}
+
 const addHandlers = () => {
   $('.boardSpot').on('click', onMakePlay)
   $('#new-game').on('click', onNewGame)
@@ -59,6 +65,7 @@ const addHandlers = () => {
   $('#get-ended-games').on('submit', onEndedGames)
   $('#get-active-games').on('submit', onActiveGames)
   $('#get-game').on('submit', onGetAGame)
+  $('#return-to-acct').on('submit', onAccountReturn)
 }
 
 module.exports = {

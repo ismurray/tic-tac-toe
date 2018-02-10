@@ -41,8 +41,11 @@ const newGameReset = function () {
 
 const startGameSuccess = function (data) {
   $('#account-page-message').text('You have started a game!')
-  $('#account-page-message').css('background-color', 'white')
+  $('#account-page-message').css('background-color', 'green')
+  console.log('INSIDE STARTGAMESUCCESS')
   $('#current-game').text(store.gameId)
+  $('#account-wrapper').hide('slow')
+  $('#game-wrapper').show('slow')
 }
 
 const startGameFailure = function (error) {
