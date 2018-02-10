@@ -77,6 +77,7 @@ const getAGameSuccess = function (data) {
   $('#gameOver-message').css('background-color', 'white')
   $('#game-message').text('')
   $('#game-message').css('background-color', 'white')
+  $('#current-game').text(store.gameId)
 
   for (let i = 0; i < data.board.length; i++) {
     const spotClass = '#mark' + i
