@@ -1,7 +1,11 @@
 'use strict'
 
-const engine = require('./engine.js')
+// const engine = require('./engine.js')
 const store = require('../store')
+
+const textUpdateById = function (id, text) {
+  $(id).text(text)
+}
 
 const movePlaySuccess = function (text) {
   $('#game-message').text(text)
@@ -47,8 +51,11 @@ const startGameFailure = function (error) {
   console.log(error)
 }
 
+// For some reason engine kept returning undefined when it was defined at the
+// top of this doc, but works fine if defined within the function??
 const getGamesSuccess = function (data) {
-  console.log(data)
+  const engine = require('./engine.js')
+  engine.allGameStats(data)
   $('#account-page-message').text('Games retrieved! See console.')
   $('#account-page-message').css('background-color', 'white')
 }
@@ -113,5 +120,6 @@ module.exports = {
   getGamesSuccess,
   getGamesFailure,
   getAGameSuccess,
-  getAGameFailure
+  getAGameFailure,
+  textUpdateById
 }

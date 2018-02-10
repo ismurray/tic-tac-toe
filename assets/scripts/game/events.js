@@ -3,7 +3,6 @@
 const engine = require('./engine.js')
 const gameAPI = require('./api.js')
 const gameUI = require('./ui.js')
-const getFormFields = require('../../../lib/get-form-fields')
 
 const onMakePlay = function () {
   const index = this.getAttribute('data-id')

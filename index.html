@@ -67,11 +67,22 @@
 
       <form id="get-all-games" class="border">
         <fieldset>
-          <legend>Retrieve Games</legend>
-          <input type="submit" value="Get All Games">
+          <legend>Retrieve Game Stats</legend>
+          <input type="submit" value="Get All Game Stats">
         </fieldset>
       </form>
-      <form id="get-ended-games" class="border">
+
+      <h3>Game Stats:</h3>
+      <ul>
+        <li>Total games: <span id="total-games"></span></li>
+        <li> Unfinished games: <span id="active-games"></span></li>
+        <li> Finished games: <span id="ended-games"></span></li>
+        <li> Games won: <span id="games-won"></span></li>
+        <li> Games lost: <span id="games-lost"></span></li>
+        <li> Games drawn: <span id="games-drawn"></span></li>
+        <li> Winrate: <span id="winrate"></span></li>
+      </ul>
+      <!-- <form id="get-ended-games" class="border">
         <fieldset>
           <input type="submit" value="Get Finished Games">
         </fieldset>
@@ -80,7 +91,7 @@
         <fieldset>
           <input type="submit" value="Get Active Games">
         </fieldset>
-      </form>
+      </form> -->
 
       <form id="get-game" class="border">
         <fieldset>

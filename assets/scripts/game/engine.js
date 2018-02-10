@@ -22,6 +22,8 @@ const game = {
   ]
 }
 
+let allGames = {}
+
 // sets internal game object to match newly created game from API
 const createNewGame = function (data) {
   const createGame = data.game
@@ -63,30 +65,6 @@ const loadApiGame = function (data) {
   // set visual board to match API board
   gameUI.getAGameSuccess(game)
 }
-
-// const whoWon = function () {
-//   // only run this function if the game.over is true
-//   if (!game.over) {
-//     return
-//   }
-//   // initialize move lists and open spot counter
-//   let crosses = []
-//   let aughts = []
-//   let openSpots = 0
-//   // write index of all x and o moves to respective arrays and count empty spots
-//   for (let i = 0; i < game.board.length; i++) {
-//     if (game.board[i] === 'x') {
-//       crosses.push(i)
-//     } else if (game.board[i] === 'o') {
-//       aughts.push(i)
-//     } else if (game.board[i] === '') {
-//       openSpots++
-//     }
-//   }
-//   for (let i = 0; i < game.winGroups.length; i++) {
-//
-//   }
-// }
 
 // Check finished game to determin who won, or if draw
 const whoWon = function () {
@@ -192,6 +170,46 @@ const moveEntry = function (user, index) {
   }
 }
 
+// Takes all games data from api, determines whether active/ended, and
+// whether win/loss/draw for each game. Prints stats to UI
+const allGameStats = function (data) {
+  allGames = data.games
+  console.log('game data is: ', allGames)
+  let won = 0
+  let lost = 0
+  let drew = 0
+  let ended = 0
+  let active = 0
+  const total = allGames.length
+  for (let i = 0; i < allGames.length; i++) {
+    game.board = allGames[i].cells
+    whoWon()
+    if (allGames[i].over === false) {
+      active++
+    } else {
+      ended++
+      switch (game.winner) {
+        case 'x':
+          won++
+          break
+        case 'o':
+          lost++
+          break
+        case 'draw':
+          drew++
+          break
+      }
+    }
+  }
+  gameUI.textUpdateById('#total-games', total)
+  gameUI.textUpdateById('#active-games', active)
+  gameUI.textUpdateById('#ended-games', ended)
+  gameUI.textUpdateById('#games-won', won)
+  gameUI.textUpdateById('#games-lost', lost)
+  gameUI.textUpdateById('#games-drawn', drew)
+  gameUI.textUpdateById('#winrate', won / (lost + drew))
+}
+
 // Resets the internal board and variables to initial values, and calls
 // gameUI function that resets the visual board
 // TODO See if this func is unnecessary now. createNewGame probably does the job better
@@ -208,5 +226,7 @@ module.exports = {
   newGame,
   createNewGame,
   loadApiGame,
-  whoWon
+  whoWon,
+  allGameStats,
+  drawCheck
 }
