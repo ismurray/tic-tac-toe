@@ -10,6 +10,8 @@ const textUpdateById = function (id, text) {
 const movePlaySuccess = function (text) {
   $('#game-message').text(text)
   $('#game-message').css('background-color', 'white')
+  $('#account-page-message').text('')
+  $('#game-message').css('background-color', 'white')
 }
 
 const movePlayFailure = function (text) {
@@ -43,7 +45,6 @@ const startGameSuccess = function (data) {
   $('#account-page-message').text('You have started a game!')
   $('#account-page-message').css('background-color', 'green')
   $('#current-game').text(store.gameId)
-  $('#account-wrapper').hide('slow')
   $('#game-wrapper').show('slow')
 }
 
@@ -70,14 +71,13 @@ const getGamesFailure = function (error) {
 
 const getAGameSuccess = function (data) {
   console.log(data)
-  $('#game-message').text('Game retrieved!')
-  $('#game-message').css('background-color', 'white')
+  $('#account-page-message').text('Game retrieved!')
+  $('#account-page-message').css('background-color', 'white')
   $('#gameOver-message').text('')
   $('#gameOver-message').css('background-color', 'white')
   $('#game-message').text('')
   $('#game-message').css('background-color', 'white')
   $('#current-game').text(store.gameId)
-  $('#account-wrapper').hide('slow')
   $('#game-wrapper').show('slow')
   $('#get-game').find('input:text').val('')
 
@@ -124,6 +124,16 @@ const accountReturn = function () {
   $('#account-wrapper').show('slow')
 }
 
+const resetGameStats = function () {
+  textUpdateById('#total-games', '')
+  textUpdateById('#active-games', '')
+  textUpdateById('#ended-games', '')
+  textUpdateById('#games-won', '')
+  textUpdateById('#games-lost', '')
+  textUpdateById('#games-drawn', '')
+  textUpdateById('#winrate', '')
+}
+
 module.exports = {
   movePlaySuccess,
   movePlayFailure,
@@ -137,5 +147,6 @@ module.exports = {
   getAGameSuccess,
   getAGameFailure,
   textUpdateById,
-  accountReturn
+  accountReturn,
+  resetGameStats
 }

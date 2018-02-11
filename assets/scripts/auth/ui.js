@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store')
+const gameUI = require('../game/ui')
 
 const signUpSuccess = function (data) {
   $('#account-message').text('Signed up successfully!')
@@ -26,6 +27,7 @@ const signInSuccess = function (data) {
   console.log(store.user)
   $('#auth-wrapper').hide('slow')
   $('#account-wrapper').show('slow')
+  $('#account-navbar').show('slow')
   $('#sign-in-button').click()
   $('#sign-in').find('input:text').val('')
   $('#sign-in').find('input:password').val('')
@@ -60,6 +62,11 @@ const signOutSuccess = function () {
   $('#account-message').css('background-color', 'green')
   $('#auth-wrapper').show('slow')
   $('#account-wrapper').hide('slow')
+  $('#game-wrapper').hide('slow')
+  $('#account-navbar').hide('slow')
+
+  // reset game stats
+  gameUI.resetGameStats()
 }
 
 const signOutFailure = function (error) {
