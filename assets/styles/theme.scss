@@ -20,3 +20,20 @@ body {
 #nav-text {
   color: $paper-white;
 }
+
+.auth-buttons {
+  width: 100%;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.center-block{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.green-btn {
+  background-color: $success;
+}

@@ -10,6 +10,7 @@ const onMakePlay = function () {
 }
 
 const onStartGame = function (event) {
+  console.log('you clicked')
   event.preventDefault()
   gameAPI.startGame()
     .then(engine.createNewGame)
@@ -54,6 +55,7 @@ const onAccountReturn = function () {
 const addHandlers = () => {
   $('.boardSpot').on('click', onMakePlay)
   $('#start-game').on('submit', onStartGame)
+  $('#start-playing-button').on('submit', onStartGame)
   $('#get-all-games').on('submit', onGetGames)
   $('#get-ended-games').on('submit', onEndedGames)
   $('#get-active-games').on('submit', onActiveGames)
