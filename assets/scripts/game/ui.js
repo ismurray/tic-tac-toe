@@ -42,7 +42,6 @@ const newGameReset = function () {
 const startGameSuccess = function (data) {
   $('#account-page-message').text('You have started a game!')
   $('#account-page-message').css('background-color', 'green')
-  console.log('INSIDE STARTGAMESUCCESS')
   $('#current-game').text(store.gameId)
   $('#account-wrapper').hide('slow')
   $('#game-wrapper').show('slow')
@@ -111,14 +110,11 @@ const getAGameSuccess = function (data) {
 }
 
 const getAGameFailure = function (error) {
-  $('#account-page-message').text('Error on getting that game!')
+  const failId = $('#get-game').find('input:text').val()
+  $('#account-page-message').text('Error on getting game with ID: ' + failId + '!')
   $('#account-page-message').css('background-color', 'red')
+  $('#get-game').find('input:text').val('')
   console.log(error)
-}
-
-const clearMessages = function () {
-  $('#account-page-message').text('')
-  $('#account-page-message').css('background-color', 'white')
 }
 
 const accountReturn = function () {
@@ -141,6 +137,5 @@ module.exports = {
   getAGameSuccess,
   getAGameFailure,
   textUpdateById,
-  clearMessages,
   accountReturn
 }
