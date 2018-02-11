@@ -97,7 +97,7 @@ const play = function (board, user, index) {
     board[index] = user
     // update visual board
     const spotClass = '#mark' + index
-    $(spotClass).text('[' + game.user + ']')
+    $(spotClass).text(game.user)
     // update API board
     gameAPI.updateBoard(index, game.user, false)
     return board

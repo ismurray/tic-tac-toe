@@ -37,7 +37,7 @@ const newGameReset = function () {
   $('#gameOver-message').css('background-color', '#fefefe')
   for (let i = 0; i < 9; i++) {
     const spotClass = '#mark' + i
-    $(spotClass).text('[ ]')
+    $(spotClass).text(' ')
   }
 }
 
@@ -84,9 +84,9 @@ const getAGameSuccess = function (data) {
   for (let i = 0; i < data.board.length; i++) {
     const spotClass = '#mark' + i
     if (data.board[i] === '') {
-      $(spotClass).text('[ ]')
+      $(spotClass).text(' ')
     } else {
-      $(spotClass).text('[' + data.board[i] + ']')
+      $(spotClass).text(data.board[i])
     }
   }
   if (!data.over) {
