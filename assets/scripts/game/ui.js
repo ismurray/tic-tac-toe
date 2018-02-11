@@ -9,32 +9,32 @@ const textUpdateById = function (id, text) {
 
 const movePlaySuccess = function (text) {
   $('#game-message').text(text)
-  $('#game-message').css('background-color', 'white')
+  $('#game-message').css('background-color', '#fefefe')
   $('#account-page-message').text('')
-  $('#game-message').css('background-color', 'white')
+  $('#account-page-message').css('background-color', '#fefefe')
 }
 
 const movePlayFailure = function (text) {
   $('#game-message').text(text)
-  $('#game-message').css('background-color', 'red')
+  $('#game-message').css('background-color', '#f0ad4e')
 }
 
 const winMessage = function (text) {
   $('#gameOver-message').text(text)
-  $('#gameOver-message').css('background-color', 'green')
+  $('#gameOver-message').css('background-color', '#5cb85c')
 }
 
 const drawMessage = function (text) {
   $('#gameOver-message').text(text)
-  $('#gameOver-message').css('background-color', 'red')
+  $('#gameOver-message').css('background-color', '#d9534f')
 }
 
 // resets the visual board and resets any error/win/draw messages
 const newGameReset = function () {
   $('#game-message').text('New Game! Player X\'s turn')
-  $('#game-message').css('background-color', 'white')
+  $('#game-message').css('background-color', '#fefefe')
   $('#gameOver-message').text('')
-  $('#gameOver-message').css('background-color', 'white')
+  $('#gameOver-message').css('background-color', '#fefefe')
   for (let i = 0; i < 9; i++) {
     const spotClass = '#mark' + i
     $(spotClass).text('[ ]')
@@ -43,14 +43,14 @@ const newGameReset = function () {
 
 const startGameSuccess = function (data) {
   $('#account-page-message').text('You have started a game!')
-  $('#account-page-message').css('background-color', 'green')
+  $('#account-page-message').css('background-color', '#5cb85c')
   $('#current-game').text(store.gameId)
   $('#game-wrapper').show('slow')
 }
 
 const startGameFailure = function (error) {
   $('#account-page-message').text('You must be signed in to start a game!')
-  $('#account-page-message').css('background-color', 'red')
+  $('#account-page-message').css('background-color', '#d9534f')
   console.log(error)
 }
 
@@ -60,23 +60,23 @@ const getGamesSuccess = function (data) {
   const engine = require('./engine.js')
   engine.allGameStats(data)
   $('#account-page-message').text('Games stats retrieved!')
-  $('#account-page-message').css('background-color', 'green')
+  $('#account-page-message').css('background-color', '#5cb85c')
 }
 
 const getGamesFailure = function (error) {
   $('#account-page-message').text('Error on getting games!')
-  $('#account-page-message').css('background-color', 'red')
+  $('#account-page-message').css('background-color', '#d9534f')
   console.log(error)
 }
 
 const getAGameSuccess = function (data) {
   console.log(data)
   $('#account-page-message').text('Game retrieved!')
-  $('#account-page-message').css('background-color', 'white')
+  $('#account-page-message').css('background-color', '#fefefe')
   $('#gameOver-message').text('')
-  $('#gameOver-message').css('background-color', 'white')
+  $('#gameOver-message').css('background-color', '#fefefe')
   $('#game-message').text('')
-  $('#game-message').css('background-color', 'white')
+  $('#game-message').css('background-color', '#fefefe')
   $('#current-game').text(store.gameId)
   $('#game-wrapper').show('slow')
   $('#get-game').find('input:text').val('')
@@ -95,15 +95,15 @@ const getAGameSuccess = function (data) {
     switch (data.winner) {
       case 'x':
         $('#gameOver-message').text('Game Loaded! Player X won this game!')
-        $('#gameOver-message').css('background-color', 'green')
+        $('#gameOver-message').css('background-color', '#5cb85c')
         break
       case 'o':
         $('#gameOver-message').text('Game Loaded! Player O won this game!')
-        $('#gameOver-message').css('background-color', 'green')
+        $('#gameOver-message').css('background-color', '#5cb85c')
         break
       case 'draw':
         $('#gameOver-message').text('Game Loaded! It was a draw!')
-        $('#gameOver-message').css('background-color', 'red')
+        $('#gameOver-message').css('background-color', '#d9534f')
         break
     }
   }
@@ -112,14 +112,14 @@ const getAGameSuccess = function (data) {
 const getAGameFailure = function (error) {
   const failId = $('#get-game').find('input:text').val()
   $('#account-page-message').text('Error on getting game with ID: ' + failId + '!')
-  $('#account-page-message').css('background-color', 'red')
+  $('#account-page-message').css('background-color', '#d9534f')
   $('#get-game').find('input:text').val('')
   console.log(error)
 }
 
 const accountReturn = function () {
   $('#account-page-message').text('')
-  $('#account-page-message').css('background-color', 'white')
+  $('#account-page-message').css('background-color', '#fefefe')
   $('#game-wrapper').hide('slow')
   $('#account-wrapper').show('slow')
 }

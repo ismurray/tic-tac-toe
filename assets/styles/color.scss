@@ -1,0 +1,20 @@
+
+$paper-white: #fefefe;
+$charcoal: #4e4e4e;
+$gray: #e5e5e5;
+$gray-base: #000;
+$teal: #00a6b3;
+$success: #5cb85c;
+$danger: #d9534f;
+$warning: #f0ad4e;
+$dark-blue: #428bca;
+$blue-button: darken($dark-blue, 6.5%);
+
+
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}

@@ -80,7 +80,7 @@ const whoWon = function () {
 // Checks whether player input is a valid move
 const validMove = function (board, index) {
   if (game.over === true) {
-    gameUI.movePlayFailure('You cannot keep playing after the game is over! Start a new game!')
+    gameUI.movePlayFailure('You can\'t keep playing after the game is over. Start a new game!')
     return false
   } else if (board[index] === '') {
     return true

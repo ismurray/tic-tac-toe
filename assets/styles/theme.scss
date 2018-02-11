@@ -1,0 +1,22 @@
+body {
+  background-color: $paper-white;
+  color: $charcoal;
+}
+
+#account-navbar {
+  background-color: darken($gray, 50%);
+}
+
+.dropdown > a .dropdown-toggle {
+  color: $paper-white;
+}
+
+.blue-btn {
+  background-color: $blue-button;
+  color: $paper-white;
+  border-color: darken($gray, 75%);
+}
+
+#nav-text {
+  color: $paper-white;
+}
