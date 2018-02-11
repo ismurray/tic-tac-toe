@@ -7,7 +7,6 @@ const authEvents = require('./auth/events.js')
 
 const onShowAll = function () {
   event.preventDefault()
-  console.log('you clicked me!')
   $('#auth-wrapper').show()
   $('#account-wrapper').show()
   $('#game-wrapper').show()
@@ -15,7 +14,6 @@ const onShowAll = function () {
 
 const onHideAll = function () {
   event.preventDefault()
-  console.log('you clicked me!')
   $('#auth-wrapper').hide()
   $('#account-wrapper').hide()
   $('#game-wrapper').hide()

@@ -99,8 +99,7 @@ const play = function (board, user, index) {
     const spotClass = '#mark' + index
     $(spotClass).text('[' + game.user + ']')
     // update API board
-    console.log(index, game.user, false)
-    console.log(gameAPI.updateBoard(index, game.user, false))
+    gameAPI.updateBoard(index, game.user, false)
     return board
   }
 }
@@ -152,13 +151,13 @@ const moveEntry = function (user, index) {
   if (winLine !== undefined) {
     game.over = true
     // update API game to over
-    console.log(gameAPI.updateBoard(index, game.user, true))
+    gameAPI.updateBoard(index, game.user, true)
     gameUI.movePlaySuccess('')
     gameUI.winMessage(user + ' wins! Winning positions are: ' + winLine)
   } else if (drawCheck(game.board)) {
     game.over = true
     // update API game to over
-    console.log(gameAPI.updateBoard(index, game.user, true))
+    gameAPI.updateBoard(index, game.user, true)
     gameUI.movePlaySuccess('')
     gameUI.drawMessage('Game is a Draw! Try a new game!')
   } else {
