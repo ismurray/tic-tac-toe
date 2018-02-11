@@ -17,3 +17,16 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 .mark0, .mark1, .mark3, .mark4, .mark6, .mark7 {
   border-right: 2px solid black;
 }
+
+.auth-buttons {
+  width: 100%;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.center-block{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
