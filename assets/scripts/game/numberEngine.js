@@ -108,7 +108,7 @@ const play = function (board, user, index, input) {
     console.log('after input:')
     printBoard(board)
     // // update visual board
-    // const spotClass = '#mark' + index
+    // const spotClass = '#numMark' + index
     // $(spotClass).text(input)
     // // update API board
     // gameAPI.updateBoard(index, input, false)
