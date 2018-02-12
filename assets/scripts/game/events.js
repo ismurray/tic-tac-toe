@@ -61,6 +61,9 @@ const addHandlers = () => {
   $('#get-active-games').on('submit', onActiveGames)
   $('#get-game').on('submit', onGetAGame)
   $('#return-to-acct').on('submit', onAccountReturn)
+  $('#account-page-message').hide()
+  $('#game-message').hide()
+  $('#gameOver-message').hide()
 }
 
 module.exports = {

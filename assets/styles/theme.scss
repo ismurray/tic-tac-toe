@@ -37,3 +37,20 @@ body {
 .green-btn {
   background-color: $success;
 }
+
+.message-container {
+  // display: inline-block;
+  // height: 25px;
+  width: auto;
+  padding: 3px;
+  border: 0;
+}
+
+.message-panel {
+  width: 50%;
+}
+
+.stats-well {
+  width: 30%;
+  min-width: 230px;
+}

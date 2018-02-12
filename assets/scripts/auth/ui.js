@@ -44,6 +44,7 @@ const signInFailure = function (error) {
 }
 
 const changePasswordSuccess = function () {
+  $('#account-page-message').show()
   $('#account-page-message').text('Password changed successfully!')
   $('#account-page-message').css('background-color', '#5cb85c')
   $('#change-password').find('input:text').val('')
@@ -51,6 +52,7 @@ const changePasswordSuccess = function () {
 }
 
 const changePasswordFailure = function (error) {
+  $('#account-page-message').show()
   $('#account-page-message').text('Error on changing password')
   $('#account-page-message').css('background-color', '#d9534f')
   $('#change-password').find('input:text').val('')
@@ -71,6 +73,7 @@ const signOutSuccess = function () {
 }
 
 const signOutFailure = function (error) {
+  $('#account-page-message').show()
   $('#account-page-message').text('Error on Signing Out')
   $('#account-page-message').css('background-color', '#d9534f')
   console.log(error)

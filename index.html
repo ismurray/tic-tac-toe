@@ -154,7 +154,15 @@
       <div id="account-wrapper">
         <h2>Welcome!</h2>
 
-        <p id="account-page-message"></p>
+
+        <div class="message-panel panel panel-default" id="account-page-message">
+          <div class="message-container panel-body">
+
+          </div>
+        </div>
+                <!-- <p id="account-page-message"></p> -->
+
+
 
         <div class="row">
           <div class="col-xs-12 center-block">
@@ -166,7 +174,31 @@
           </div>
         </div>
 
-        <h3>Your Game Stats:</h3>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          Your Game Stats:
+        </button>
+        <div class="collapse" id="collapseExample">
+          <div class="stats-well well">
+
+            <ul>
+              <li>Total games: <span id="total-games"></span></li>
+              <li> Unfinished games: <span id="active-games"></span></li>
+              <li> Finished games: <span id="ended-games"></span></li>
+              <li> Games won: <span id="games-won"></span></li>
+              <li> Games lost: <span id="games-lost"></span></li>
+              <li> Games drawn: <span id="games-drawn"></span></li>
+              <li> Winrate: <span id="winrate"></span>%</li>
+            </ul>
+            <form id="get-all-games" class="border">
+              <fieldset>
+                <button type="submit" class="blue-btn btn btn-default navbar-btn">Update</button>
+              </fieldset>
+            </form>
+
+          </div>
+        </div>
+
+        <!-- <h3>Your Game Stats:</h3>
         <ul>
           <li>Total games: <span id="total-games"></span></li>
           <li> Unfinished games: <span id="active-games"></span></li>
@@ -180,14 +212,27 @@
           <fieldset>
             <button type="submit" class="blue-btn btn btn-default navbar-btn">Update Game Stats</button>
           </fieldset>
-        </form>
+        </form> -->
 
 
         <div id="game-wrapper">
 
           <h2>Game:</h2>
-          <p id="gameOver-message"></p>
-          <p id="game-message"></p>
+          <div class="message-panel panel panel-default" id="game-message">
+            <div class="message-container panel-body">
+
+            </div>
+          </div>
+
+          <div class="message-panel panel panel-default" id="gameOver-message">
+            <div class="message-container panel-body">
+
+            </div>
+          </div>
+
+
+          <!-- <p id="gameOver-message"></p> -->
+          <!-- <p id="game-message"></p> -->
           <div class="col-md-12 wrapper">
             <div class="row board-row">
               <div class="col-xs-4 boardSpot mark0" data-id="0" id="mark0"> </div>
