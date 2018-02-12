@@ -4,6 +4,7 @@ const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 const gameEvents = require('./game/events.js')
 const authEvents = require('./auth/events.js')
+const numGameEvents = require('./game/numberEvents.js')
 
 const onShowAll = function () {
   event.preventDefault()
@@ -23,6 +24,7 @@ const onHideAll = function () {
 $(() => {
   setAPIOrigin(location, config)
   gameEvents.addHandlers()
+  numGameEvents.addHandlers()
   authEvents.addHandlers()
   $('#account-wrapper').hide()
   $('#game-wrapper').hide()

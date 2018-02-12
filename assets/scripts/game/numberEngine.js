@@ -1,8 +1,9 @@
 'use strict'
 
-const gameUI = require('./ui.js')
 const gameAPI = require('./api.js')
 const store = require('../store')
+const gameUI = require('./ui.js')
+const numUI = require('./numberUI.js')
 
 const game = {
   board: ['', '', '', '', '', '', '', '', ''],
@@ -31,9 +32,11 @@ const createNewGame = function (data) {
   game.id = createGame.id
   game.over = createGame.over
   game.user = 'x'
-  // gameUI.newGameReset()
+  game.xMoves = ['1', '3', '5', '7', '9']
+  game.oMoves = ['2', '4', '6', '8', '10']
+  numUI.newGameReset()
   store.gameId = data.game.id
-  // gameUI.startGameSuccess()
+  numUI.startGameSuccess()
   console.log('store.gameId', store.gameId)
 }
 
@@ -80,13 +83,13 @@ const createNewGame = function (data) {
 const validMove = function (board, user, index, input) {
   const moves = user + 'Moves'
   if (game.over === true) {
-    console.log('You can\'t keep playing after the game is over. Start a new game!')
+    gameUI.movePlayFailure('You can\'t keep playing after the game is over. Start a new game!')
     return false
   } else if (board[index] !== '') {
-    console.log('You can only play in an empty space! Try a different spot.')
+    gameUI.movePlayFailure('You can only play in an empty space! Try a different spot.')
     return false
   } else if (game[moves].includes(input) === false) {
-    console.log('You can only play one of these numbers: ' + game[moves])
+    gameUI.movePlayFailure('You can only play one of these numbers: ' + game[moves])
   } else {
     return true
   }
@@ -102,16 +105,18 @@ const play = function (board, user, index, input) {
       game[moves].splice(usedIndex, 1)
     }
     // update internal board
-    console.log('before input:')
-    printBoard(board)
     board[index] = input
-    console.log('after input:')
-    printBoard(board)
-    // // update visual board
-    // const spotClass = '#numMark' + index
-    // $(spotClass).text(input)
-    // // update API board
-    // gameAPI.updateBoard(index, input, false)
+    // update visual board
+    const spotClass = '#numMark' + index
+    $(spotClass).text(input)
+    const formInputTag = '#numForm' + index
+    $(formInputTag).hide()
+    // update visual list of available moves
+    const printMoves = game[moves].map(string => parseInt(string))
+    const movesClass = '#' + user + '-moves'
+    $(movesClass).text('Player' + user + '\'s moves: ' + printMoves)
+    // update API board
+    gameAPI.updateBoard(index, input, false)
     return board
   }
 }
@@ -158,14 +163,14 @@ const turnSwitch = function (user) {
   return user
 }
 
-// Prints board to ascii board to console
-const printBoard = function (brd) {
-  console.log(brd[0] + '|' + brd[1] + '|' + brd[2])
-  console.log('-----')
-  console.log(brd[3] + '|' + brd[4] + '|' + brd[5])
-  console.log('-----')
-  console.log(brd[6] + '|' + brd[7] + '|' + brd[8])
-}
+// // Prints board to ascii board to console
+// const printBoard = function (brd) {
+//   console.log(brd[0] + '|' + brd[1] + '|' + brd[2])
+//   console.log('-----')
+//   console.log(brd[3] + '|' + brd[4] + '|' + brd[5])
+//   console.log('-----')
+//   console.log(brd[6] + '|' + brd[7] + '|' + brd[8])
+// }
 
 const moveEntry = function (user, index, input) {
   // confirm move validity
@@ -181,15 +186,15 @@ const moveEntry = function (user, index, input) {
     game.over = true
     // // update API game to over
     // gameAPI.updateBoard(index, game.user, true)
-    // gameUI.movePlaySuccess('')
-    // gameUI.winMessage(user + ' wins! Winning positions are: ' + winLine)
+    gameUI.movePlaySuccess('')
+    gameUI.winMessage(user + ' wins! Winning positions are: ' + winLine)
     console.log(user + ' wins! Winning positions are: ' + winLine)
   } else if (drawCheck(game.board)) {
     game.over = true
     // update API game to over
     // gameAPI.updateBoard(index, game.user, true)
-    // gameUI.movePlaySuccess('')
-    // gameUI.drawMessage('Game is a Draw! Try a new game!')
+    gameUI.movePlaySuccess('')
+    gameUI.drawMessage('Game is a Draw! Try a new game!')
     console.log('Game is a Draw! Try a new game!')
   } else {
     const lastUser = user
@@ -197,11 +202,12 @@ const moveEntry = function (user, index, input) {
     turnSwitch(user)
     const text = 'Player ' + lastUser + ' has made their move! Player ' + game.user + ', now it\'s your turn!'
     console.log(text)
+    gameUI.movePlaySuccess(text)
   }
 }
 
-moveEntry(game.user, 0, '1')
-
 module.exports = {
-  moveEntry
+  game,
+  moveEntry,
+  createNewGame
 }
