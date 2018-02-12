@@ -134,6 +134,8 @@ const megaMoveEntry = function (index, subGame, subUser, subIndex) {
   } else if (drawCheck(subGame.board)) {
     subGame.over = true
     console.log('This sub-game is a draw, so nobody takes square ' + index + 'this turn! Next Player go!')
+    // replace spent subBoard with a new board
+    masterGame.subGames[subIndex] = new StoredGame(['', '', '', '', '', '', '', '', ''], false, subIndex, 'x')
     // update API game to over
     // gameAPI.updateBoard(index, game.user, true)
     // gameUI.movePlaySuccess('')
