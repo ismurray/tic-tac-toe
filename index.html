@@ -19,7 +19,7 @@
 
       <div class="container-fluid">
 
-      <!-- <form id="hide-all" class="border">
+      <form id="hide-all" class="border">
         <fieldset>
           <input type="submit" value="Hide All">
         </fieldset>
@@ -28,7 +28,7 @@
         <fieldset>
           <input type="submit" value="Show All">
         </fieldset>
-      </form> -->
+      </form>
 
 
       <nav class="navbar navbar-default" id="account-navbar">
@@ -46,13 +46,13 @@
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
+            <!-- <ul class="nav navbar-nav">
               <li>
                 <form class="navbar-form" id="start-game">
                 <button type="submit" class="blue-btn btn btn-default navbar-btn">New Game</button>
                 </form>
               </li>
-            </ul>
+            </ul> -->
             <form class="navbar-form navbar-left" id="get-game">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Retrieve game by ID">
@@ -288,6 +288,25 @@
             </fieldset>
           </form> -->
 
+          <button class="btn btn-primary stats-drop-button center-block" type="button" data-toggle="collapse" data-target="#collapse-classic-instructions" aria-expanded="false" aria-controls="collapse-classic-instructions">
+            Instructions
+          </button>
+          <div class="collapse" id="collapse-classic-instructions">
+            <div class="stats-well col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-12 well">
+
+            <div class="row">
+                <div class="col-xs-12">
+                  <p>Tic-tac-toe is a quick and easy game for two players who
+                    take turns marking the spaces in a 3×3 grid.</p>
+                  <p>The first player marks their squares with x's, and the second player
+                    marks their squares with o's.</p>
+                  <p> The player who succeeds in placing three of their marks in a
+                    horizontal, vertical, or diagonal row wins the game.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div id="numeric-game-wrapper">
@@ -397,6 +416,31 @@
               <div class="col-md-6 col-sm-8 col-xs-12 panel panel-default" id="o-moves">
                 <div class="col-md-6 col-sm-8 col-xs-12 message-container panel-body">
                   Player o's moves: 2,4,6,8,10
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary stats-drop-button center-block" type="button" data-toggle="collapse" data-target="#collapse-num-instructions" aria-expanded="false" aria-controls="collapse-num-instructions">
+            Instructions
+          </button>
+          <div class="collapse" id="collapse-num-instructions">
+            <div class="stats-well col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-12 well">
+
+            <div class="row">
+                <div class="col-xs-12">
+                  <p>Numerical Tic Tac Toe is a variation invented by the
+                  mathematician Ronald Graham. The numbers 1 to 10 are used in
+                  this game instead of x's and o's.
+                  <p>The first player (Player x)
+                  plays with the odd numbers, the second player (Player o) plays
+                  with the even numbers. All numbers can be used only once.</p>
+                  <p>The player who puts down a 3rd number in a line which adds up to
+                  15 wins!</p>
+
+                  <p>Hint: You'll want to keep track of which numbers you and
+                    your opponent have left, and make plays using each other's
+                    placed numbers.</p>
                 </div>
               </div>
             </div>
