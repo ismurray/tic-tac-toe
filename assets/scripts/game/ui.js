@@ -56,6 +56,7 @@ const startGameSuccess = function (data) {
   $('#account-page-message').css('background-color', '#5cb85c')
   $('#current-game').text(store.gameId)
   $('#game-wrapper').show('slow')
+  $('#numeric-game-wrapper').hide()
 }
 
 const startGameFailure = function (error) {
