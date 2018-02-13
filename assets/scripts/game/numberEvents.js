@@ -6,7 +6,6 @@ const gameAPI = require('./api.js')
 
 const onStartGame = function () {
   event.preventDefault()
-  console.log('you clicked')
   gameAPI.startGame()
     .then(numEngine.createNewGame)
     .catch(gameUI.startGameFailure)

@@ -10,7 +10,6 @@ const onMakePlay = function () {
 }
 
 const onStartGame = function (event) {
-  console.log('you clicked')
   event.preventDefault()
   gameAPI.startGame()
     .then(engine.createNewGame)
@@ -27,7 +26,6 @@ const onGetGames = function (event) {
 const onGetAGame = function (event) {
   event.preventDefault()
   const id = $('#get-game input').val()
-  console.log(id)
   gameAPI.getAGame(id)
     .then(engine.loadApiGame)
     .catch(gameUI.getAGameFailure)

@@ -28,7 +28,6 @@ let allGames = {}
 // sets internal game object to match newly created game from API
 const createNewGame = function (data) {
   const createGame = data.game
-  console.log(data)
   game.board = createGame.cells
   game.id = createGame.id
   game.over = createGame.over
@@ -44,7 +43,6 @@ const createNewGame = function (data) {
 const loadApiGame = function (data) {
   // set internal board to match api board
   const createGame = data.game
-  console.log(data)
   game.board = createGame.cells
   game.id = createGame.id
   game.over = createGame.over
@@ -61,14 +59,7 @@ const loadApiGame = function (data) {
   }
   // set current turn to correct user
   crosses > aughts ? game.user = 'o' : game.user = 'x'
-  console.log(game.user)
   whoWon()
-  // const winLine = findWin(game.board, game.winGroups, game.winner)
-  // if (winLine !== undefined) {
-  //   const winText = 'Game Loaded! Player ' + game.winner + ' won this game!'
-  //   gameUI.winMessage(winText, winLine)
-  //   debugger
-  // }
   // set visual board to match API board
   gameUI.getAGameSuccess(game)
 }
@@ -218,9 +209,7 @@ const allGameStats = function (data) {
   const total = allGames.length
   // sort classic games vs numeric games
   const classicGames = allGames.filter(isGameClassic)
-  console.log(classicGames)
   const numericGames = allGames.filter(isGameNumeric)
-  console.log(numericGames)
 
   const totalClassic = classicGames.length
   const totalNumeric = numericGames.length
@@ -293,9 +282,6 @@ const allGameStats = function (data) {
   gameUI.textUpdateById('#games-lost-numeric', lostNumeric)
   gameUI.textUpdateById('#games-drawn-numeric', drewNumeric)
   gameUI.textUpdateById('#winrate-numeric', winRateNumeric)
-
-  console.log('#total-unassigned', totalUnassigned)
-
 }
 
 module.exports = {

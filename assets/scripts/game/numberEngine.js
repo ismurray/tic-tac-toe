@@ -27,7 +27,6 @@ const game = {
 // sets internal game object to match newly created game from API
 const createNewGame = function (data) {
   const createGame = data.game
-  console.log(data)
   game.board = createGame.cells
   game.id = createGame.id
   game.over = createGame.over
@@ -138,7 +137,6 @@ const equalsFifteen = function (board, winGroup) {
   for (let i = 0; i < winGroup.length; i++) {
     sum += parseInt(board[winGroup[i]])
   }
-  console.log('sum is ' + sum)
   if (sum === 15) {
     return true
   } else {
@@ -162,8 +160,6 @@ const whoWonNum = function (board) {
   let winner = ''
   const odds = board.filter(spot => spot % 2 === 1)
   const evens = board.filter(spot => spot % 2 === 0 && spot !== '')
-  console.log('evens is ', evens)
-  console.log('odds is ', odds)
   if (findNumWin(board, game.winGroups) !== undefined) {
     odds.length > evens.length ? winner = 'x' : winner = 'o'
   } else if (findNumWin(board, game.winGroups) === undefined && odds.length === 5) {
@@ -179,15 +175,6 @@ const turnSwitch = function (user) {
   user === 'x' ? game.user = 'o' : game.user = 'x'
   return user
 }
-
-// // Prints board to ascii board to console
-// const printBoard = function (brd) {
-//   console.log(brd[0] + '|' + brd[1] + '|' + brd[2])
-//   console.log('-----')
-//   console.log(brd[3] + '|' + brd[4] + '|' + brd[5])
-//   console.log('-----')
-//   console.log(brd[6] + '|' + brd[7] + '|' + brd[8])
-// }
 
 const moveEntry = function (user, index, input) {
   // confirm move validity
@@ -213,13 +200,11 @@ const moveEntry = function (user, index, input) {
     gameAPI.updateBoard(index, input, true)
     gameUI.movePlaySuccess('')
     gameUI.drawMessage('Game is a Draw! Try a new game!')
-    console.log('Game is a Draw! Try a new game!')
   } else {
     const lastUser = user
     // Game continues-> switch to next player's turn
     turnSwitch(user)
     const text = 'Player ' + lastUser + ' has made their move! Player ' + game.user + ', now it\'s your turn!'
-    console.log(text)
     gameUI.movePlaySuccess(text)
   }
 }
