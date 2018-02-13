@@ -4,6 +4,7 @@
 const gameUI = require('./ui.js')
 const gameAPI = require('./api.js')
 const store = require('../store')
+const numEngine = require('./numberEngine')
 
 const game = {
   board: ['', '', '', '', '', '', '', '', ''],
@@ -169,48 +170,122 @@ const moveEntry = function (user, index) {
   }
 }
 
+const isGameClassic = function (value, index, array) {
+  const cells = value.cells
+  if (cells.some(spot => spot === 'x') | cells.some(spot => spot === 'x')) {
+    return true
+  }
+}
+
+const isGameNumeric = function (value, index, array) {
+  const cells = value.cells
+  if (cells.some(spot => spot === '1') |
+  cells.some(spot => spot === '2') |
+  cells.some(spot => spot === '3') |
+  cells.some(spot => spot === '4') |
+  cells.some(spot => spot === '5') |
+  cells.some(spot => spot === '6') |
+  cells.some(spot => spot === '7') |
+  cells.some(spot => spot === '8') |
+  cells.some(spot => spot === '9') |
+  cells.some(spot => spot === '10')) {
+    return true
+  }
+}
+
 // Takes all games data from api, determines whether active/ended, and
 // whether win/loss/draw for each game. Prints stats to UI
 const allGameStats = function (data) {
   allGames = data.games
   console.log('game data is: ', allGames)
-  let won = 0
-  let lost = 0
-  let drew = 0
-  let ended = 0
-  let active = 0
+  let wonClassic = 0
+  let lostClassic = 0
+  let drewClassic = 0
+  let endedClassic = 0
+  let activeClassic = 0
+  let wonNumeric = 0
+  let lostNumeric = 0
+  let drewNumeric = 0
+  let endedNumeric = 0
+  let activeNumeric = 0
   const total = allGames.length
-  for (let i = 0; i < allGames.length; i++) {
-    game.board = allGames[i].cells
+  // sort classic games vs numeric games
+  const classicGames = allGames.filter(isGameClassic)
+  console.log(classicGames)
+  const numericGames = allGames.filter(isGameNumeric)
+  console.log(numericGames)
+
+  const totalClassic = classicGames.length
+  const totalNumeric = numericGames.length
+  const totalUnnassigned = allGames.length - numericGames.length
+
+  // calculate classic stats
+  for (let i = 0; i < classicGames.length; i++) {
+    game.board = classicGames[i].cells
     whoWon()
-    if (allGames[i].over === false) {
-      active++
+    if (classicGames[i].over === false) {
+      activeClassic++
     } else {
-      ended++
+      endedClassic++
       switch (game.winner) {
         case 'x':
-          won++
+          wonClassic++
           break
         case 'o':
-          lost++
+          lostClassic++
           break
         case 'draw':
-          drew++
+          drewClassic++
           break
       }
     }
   }
-  let winRate = (won / ended) * 100
-  if (won === 0) {
-    winRate = 0
+  let winRateClassic = (wonClassic / endedClassic) * 100
+  if (wonClassic === 0) {
+    winRateClassic = 0
+  }
+  // calculate numeric stats
+  for (let i = 0; i < numericGames.length; i++) {
+    game.board = numericGames[i].cells
+    game.winner = numEngine.whoWonNum(game.board)
+    if (numericGames[i].over === false) {
+      activeNumeric++
+    } else {
+      endedNumeric++
+      switch (game.winner) {
+        case 'x':
+          wonNumeric++
+          break
+        case 'o':
+          lostNumeric++
+          break
+        case 'draw':
+          drewNumeric++
+          break
+      }
+    }
+  }
+  let winRateNumeric = (wonNumeric / endedNumeric) * 100
+  if (wonNumeric === 0) {
+    winRateNumeric = 0
   }
   gameUI.textUpdateById('#total-games', total)
-  gameUI.textUpdateById('#active-games', active)
-  gameUI.textUpdateById('#ended-games', ended)
-  gameUI.textUpdateById('#games-won', won)
-  gameUI.textUpdateById('#games-lost', lost)
-  gameUI.textUpdateById('#games-drawn', drew)
-  gameUI.textUpdateById('#winrate', winRate)
+  gameUI.textUpdateById('#active-games', activeClassic)
+  gameUI.textUpdateById('#ended-games', endedClassic)
+  gameUI.textUpdateById('#games-won', wonClassic)
+  gameUI.textUpdateById('#games-lost', lostClassic)
+  gameUI.textUpdateById('#games-drawn', drewClassic)
+  gameUI.textUpdateById('#winrate', winRateClassic)
+  console.log('#total-classic', totalClassic)
+  console.log('#total-numeric', totalNumeric)
+  console.log('#total-unnassigned', totalUnnassigned)
+  console.log('#total-games', total)
+  console.log('#active-games', activeNumeric)
+  console.log('#ended-games', endedNumeric)
+  console.log('#games-won', wonNumeric)
+  console.log('#games-lost', lostNumeric)
+  console.log('#games-drawn', drewNumeric)
+  console.log('#winrate', winRateNumeric)
 }
 
 module.exports = {

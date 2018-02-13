@@ -63,16 +63,16 @@ const createNewGame = function (data) {
 //   // set current turn to correct user
 //   crosses > aughts ? game.user = 'o' : game.user = 'x'
 //   console.log(game.user)
-//   whoWon()
+//   whoWonNum()
 //   // set visual board to match API board
 //   gameUI.getAGameSuccess(game)
 // }
 
 // // Check finished game to determin who won, or if draw
-// const whoWon = function () {
-//   if (findWin(game.board, game.winGroups, 'x') !== undefined) {
+// const whoWonNum = function () {
+//   if (findNumWin(game.board, game.winGroups, 'x') !== undefined) {
 //     game.winner = 'x'
-//   } else if (findWin(game.board, game.winGroups, 'o') !== undefined) {
+//   } else if (findNumWin(game.board, game.winGroups, 'o') !== undefined) {
 //     game.winner = 'o'
 //   } else if (drawCheck(game.board)) {
 //     game.winner = 'draw'
@@ -149,12 +149,29 @@ const equalsFifteen = function (board, winGroup) {
 // Checks if any win conditions have been met by a given user, returns the line
 // of the first win found, returns undefined if no win conditions met
 // TODO add ability to return multiple wins if the wining move is a combo
-const findWin = function (board, winGroups) {
+const findNumWin = function (board, winGroups) {
   for (let i = 0; i < winGroups.length; i++) {
     if (equalsFifteen(board, winGroups[i])) {
       return winGroups[i]
     }
   }
+}
+
+// Check finished game to determin who won, or if draw
+const whoWonNum = function (board) {
+  let winner = ''
+  const odds = board.filter(spot => spot % 2 === 1)
+  const evens = board.filter(spot => spot % 2 === 0 && spot !== '')
+  console.log('evens is ', evens)
+  console.log('odds is ', odds)
+  if (findNumWin(board, game.winGroups) !== undefined) {
+    odds.length > evens.length ? winner = 'x' : winner = 'o'
+  } else if (findNumWin(board, game.winGroups) === undefined && odds.length === 5) {
+    winner = 'draw'
+  } else if (drawCheck(board)) {
+    winner = 'draw'
+  }
+  return winner
 }
 
 // toggles the current user from 'x' to 'o' and vice versa
@@ -180,19 +197,19 @@ const moveEntry = function (user, index, input) {
   // write move to game.board
   game.board = play(game.board, user, index, input)
   // check to see if move is a winning play
-  const winLine = findWin(game.board, game.winGroups)
+  const winLine = findNumWin(game.board, game.winGroups)
   // If game is won-> return winning line, if game is draw-> end, otherwise next user's turn
   if (winLine !== undefined) {
     game.over = true
-    // // update API game to over
-    // gameAPI.updateBoard(index, game.user, true)
+    // update API game to over
+    gameAPI.updateBoard(index, input, true)
     gameUI.movePlaySuccess('')
     gameUI.winMessage(user + ' wins! Winning positions are: ' + winLine)
     console.log(user + ' wins! Winning positions are: ' + winLine)
   } else if (drawCheck(game.board)) {
     game.over = true
     // update API game to over
-    // gameAPI.updateBoard(index, game.user, true)
+    gameAPI.updateBoard(index, input, true)
     gameUI.movePlaySuccess('')
     gameUI.drawMessage('Game is a Draw! Try a new game!')
     console.log('Game is a Draw! Try a new game!')
@@ -209,5 +226,6 @@ const moveEntry = function (user, index, input) {
 module.exports = {
   game,
   moveEntry,
-  createNewGame
+  createNewGame,
+  whoWonNum
 }
