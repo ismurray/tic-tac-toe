@@ -8,11 +8,11 @@
 }
 
 .mark0, .mark1, .mark2, .mark3, .mark4, .mark5 {
-  border-bottom: 2px solid black;
+  border-bottom: 5px solid $charcoal;
 }
 
 .mark0, .mark1, .mark3, .mark4, .mark6, .mark7 {
-  border-right: 2px solid black;
+  border-right: 5px solid $charcoal;
 }
 
 .board-row > div {
