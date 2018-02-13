@@ -161,7 +161,7 @@ const moveEntry = function (user, index) {
     gameAPI.updateBoard(index, game.user, true)
     gameUI.movePlaySuccess('')
     const winText = user + ' wins!'
-    gameUI.winMessage(winText, winLine)
+    gameUI.winMessage(winText, winLine, '#mark')
   } else if (drawCheck(game.board)) {
     game.over = true
     // update API game to over

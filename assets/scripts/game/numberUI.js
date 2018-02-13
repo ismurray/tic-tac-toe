@@ -14,8 +14,9 @@ const newGameReset = function () {
   // $('#gameOver-message').text('')
   // $('#gameOver-message').css('background-color', '#fefefe')
   for (let i = 0; i < 9; i++) {
-    const spotClass = '#numMark' + i
-    $(spotClass).text('')
+    const spotID = '#numMark' + i
+    $(spotID).css('background-color', '#fefefe')
+    $(spotID).text('')
     const formID = '#numForm' + i
     $(formID).find('input:text').val('')
     $(formID).show()

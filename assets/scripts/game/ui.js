@@ -22,14 +22,14 @@ const movePlayFailure = function (text) {
   $('#game-message').css('background-color', '#f0ad4e')
 }
 
-const winMessage = function (text, winLine) {
+const winMessage = function (text, winLine, spot) {
   $('#game-message').hide('slow')
   $('#gameOver-message').show()
   $('#gameOver-message').text(text)
   $('#gameOver-message').css('background-color', '#5cb85c')
   // change background color of winning positions
   for (let i = 0; i < winLine.length; i++) {
-    const spotID = '#mark' + winLine[i]
+    const spotID = spot + winLine[i]
     $(spotID).css('background-color', '#5cb85c')
   }
 }
@@ -94,7 +94,7 @@ const getGameWinMessage = function () {
   const winLine = engine.findWin(engine.game.board, engine.game.winGroups, engine.game.winner)
   if (winLine !== undefined) {
     const winText = 'Game Loaded! Player ' + engine.game.winner + ' won this game!'
-    winMessage(winText, winLine)
+    winMessage(winText, winLine, '#mark')
   }
 }
 
