@@ -111,6 +111,7 @@ const getAGameSuccess = function (data) {
   $('#game-message').css('background-color', '#fefefe')
   $('#current-game').text(store.gameId)
   $('#game-wrapper').show('slow')
+  $('#numeric-game-wrapper').hide('slow')
   $('#get-game').find('input:text').val('')
 
   for (let i = 0; i < data.board.length; i++) {
