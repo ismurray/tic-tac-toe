@@ -192,21 +192,45 @@
           </div>
         </div>
 
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseClassic" aria-expanded="false" aria-controls="collapseClassic">
           Your Game Stats:
         </button>
-        <div class="collapse" id="collapseExample">
-          <div class="stats-well well">
+        <div class="collapse" id="collapseClassic">
+          <div class="stats-well col-md-4 col-sm-8 col-xs-12 well">
 
-            <ul>
-              <li>Total games: <span id="total-games"></span></li>
-              <li> Unfinished games: <span id="active-games"></span></li>
-              <li> Finished games: <span id="ended-games"></span></li>
-              <li> Games won: <span id="games-won"></span></li>
-              <li> Games lost: <span id="games-lost"></span></li>
-              <li> Games drawn: <span id="games-drawn"></span></li>
-              <li> Winrate: <span id="winrate"></span>%</li>
-            </ul>
+            <div class="row">
+              <ul class="col-sm-6 col-xs-12">
+                 <li>Total games: <span class="total-games"></span></li>
+                 <li>Total Unassigned games: <span class="total-unassigned"></span></li>
+              </ul>
+          </div>
+          <div class="row">
+              <div class="col-sm-6 col-xs-12">
+                <ul>
+                  <li class="dropdown-header">Classic Mode:</li>
+                  <li> Total Classic games: <span id="total-games-classic"></span></li>
+                  <li> Unfinished games: <span id="active-games-classic"></span></li>
+                  <li> Finished games: <span id="ended-games-classic"></span></li>
+                  <li> Games won: <span id="games-won-classic"></span></li>
+                  <li> Games lost: <span id="games-lost-classic"></span></li>
+                  <li> Games drawn: <span id="games-drawn-classic"></span></li>
+                  <li> Winrate: <span id="winrate-classic"></span>%</li>
+                </ul>
+              </div>
+              <div class="col-sm-6 col-xs-12">
+                <ul>
+                <li class="dropdown-header">Numeric Mode:</li>
+                <li> Total Numeric games: <span id="total-games-numeric"></span></li>
+                  <li> Unfinished games: <span id="active-games-numeric"></span></li>
+                  <li> Finished games: <span id="ended-games-numeric"></span></li>
+                  <li> Games won: <span id="games-won-numeric"></span></li>
+                  <li> Games lost: <span id="games-lost-numeric"></span></li>
+                  <li> Games drawn: <span id="games-drawn-numeric"></span></li>
+                  <li> Winrate: <span id="winrate-numeric"></span>%</li>
+                </ul>
+              </div>
+            </div>
+
             <form id="get-all-games" class="border">
               <fieldset>
                 <button type="submit" class="blue-btn btn btn-default navbar-btn">Update</button>
@@ -214,6 +238,32 @@
             </form>
           </div>
         </div>
+
+
+
+        <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNumeric" aria-expanded="false" aria-controls="collapseNumeric">
+          Your Numeric Mode Stats:
+        </button>
+        <div class="collapse" id="collapseNumeric">
+          <div class="stats-well well">
+
+            <ul>
+              <li> Total games: <span class="total-games"></span></li>
+              <li> Total Unassigned games: <span class="total-unassigned"></span></li>
+              <li> Unfinished games: <span id="active-games-numeric"></span></li>
+              <li> Finished games: <span id="ended-games-numeric"></span></li>
+              <li> Games won: <span id="games-won-numeric"></span></li>
+              <li> Games lost: <span id="games-lost-numeric"></span></li>
+              <li> Games drawn: <span id="games-drawn-numeric"></span></li>
+              <li> Winrate: <span id="winrate-numeric"></span>%</li>
+            </ul>
+            <form id="get-all-games" class="border">
+              <fieldset>
+                <button type="submit" class="blue-btn btn btn-default navbar-btn">Update</button>
+              </fieldset>
+            </form>
+          </div>
+        </div> -->
 
         <div class="row">
 

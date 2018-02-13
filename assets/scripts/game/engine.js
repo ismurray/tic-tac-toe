@@ -217,7 +217,7 @@ const allGameStats = function (data) {
 
   const totalClassic = classicGames.length
   const totalNumeric = numericGames.length
-  const totalUnnassigned = allGames.length - numericGames.length
+  const totalUnassigned = allGames.length - numericGames.length - classicGames.length
 
   // calculate classic stats
   for (let i = 0; i < classicGames.length; i++) {
@@ -240,7 +240,7 @@ const allGameStats = function (data) {
       }
     }
   }
-  let winRateClassic = (wonClassic / endedClassic) * 100
+  let winRateClassic = Math.round((wonClassic / endedClassic) * 100)
   if (wonClassic === 0) {
     winRateClassic = 0
   }
@@ -265,27 +265,30 @@ const allGameStats = function (data) {
       }
     }
   }
-  let winRateNumeric = (wonNumeric / endedNumeric) * 100
+  let winRateNumeric = Math.round((wonNumeric / endedNumeric) * 100)
   if (wonNumeric === 0) {
     winRateNumeric = 0
   }
-  gameUI.textUpdateById('#total-games', total)
-  gameUI.textUpdateById('#active-games', activeClassic)
-  gameUI.textUpdateById('#ended-games', endedClassic)
-  gameUI.textUpdateById('#games-won', wonClassic)
-  gameUI.textUpdateById('#games-lost', lostClassic)
-  gameUI.textUpdateById('#games-drawn', drewClassic)
-  gameUI.textUpdateById('#winrate', winRateClassic)
-  console.log('#total-classic', totalClassic)
-  console.log('#total-numeric', totalNumeric)
-  console.log('#total-unnassigned', totalUnnassigned)
-  console.log('#total-games', total)
-  console.log('#active-games', activeNumeric)
-  console.log('#ended-games', endedNumeric)
-  console.log('#games-won', wonNumeric)
-  console.log('#games-lost', lostNumeric)
-  console.log('#games-drawn', drewNumeric)
-  console.log('#winrate', winRateNumeric)
+  gameUI.textUpdateById('.total-games', total)
+  gameUI.textUpdateById('.total-unassigned', totalUnassigned)
+  gameUI.textUpdateById('#total-games-classic', totalClassic)
+  gameUI.textUpdateById('#active-games-classic', activeClassic)
+  gameUI.textUpdateById('#ended-games-classic', endedClassic)
+  gameUI.textUpdateById('#games-won-classic', wonClassic)
+  gameUI.textUpdateById('#games-lost-classic', lostClassic)
+  gameUI.textUpdateById('#games-drawn-classic', drewClassic)
+  gameUI.textUpdateById('#winrate-classic', winRateClassic)
+
+  gameUI.textUpdateById('#total-games-numeric', totalNumeric)
+  gameUI.textUpdateById('#active-games-numeric', activeNumeric)
+  gameUI.textUpdateById('#ended-games-numeric', endedNumeric)
+  gameUI.textUpdateById('#games-won-numeric', wonNumeric)
+  gameUI.textUpdateById('#games-lost-numeric', lostNumeric)
+  gameUI.textUpdateById('#games-drawn-numeric', drewNumeric)
+  gameUI.textUpdateById('#winrate-numeric', winRateNumeric)
+
+  console.log('#total-unassigned', totalUnassigned)
+
 }
 
 module.exports = {
