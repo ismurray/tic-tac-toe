@@ -1,6 +1,6 @@
 'use strict'
 
-// const engine = require('./engine.js')
+const engine = require('./engine.js')
 const store = require('../store')
 
 const textUpdateById = function (id, text) {
@@ -22,11 +22,16 @@ const movePlayFailure = function (text) {
   $('#game-message').css('background-color', '#f0ad4e')
 }
 
-const winMessage = function (text) {
+const winMessage = function (text, winLine) {
   $('#game-message').hide('slow')
   $('#gameOver-message').show()
   $('#gameOver-message').text(text)
   $('#gameOver-message').css('background-color', '#5cb85c')
+  // change background color of winning positions
+  for (let i = 0; i < winLine.length; i++) {
+    const spotID = '#mark' + winLine[i]
+    $(spotID).css('background-color', '#5cb85c')
+  }
 }
 
 const drawMessage = function (text) {
@@ -45,8 +50,9 @@ const newGameReset = function () {
   // $('#gameOver-message').text('')
   // $('#gameOver-message').css('background-color', '#fefefe')
   for (let i = 0; i < 9; i++) {
-    const spotClass = '#mark' + i
-    $(spotClass).text(' ')
+    const spotID = '#mark' + i
+    $(spotID).text(' ')
+    $(spotID).css('background-color', '#fefefe')
   }
 }
 
@@ -83,27 +89,37 @@ const getGamesFailure = function (error) {
   console.log(error)
 }
 
+const getGameWinMessage = function () {
+  const engine = require('./engine.js')
+  const winLine = engine.findWin(engine.game.board, engine.game.winGroups, engine.game.winner)
+  if (winLine !== undefined) {
+    const winText = 'Game Loaded! Player ' + engine.game.winner + ' won this game!'
+    winMessage(winText, winLine)
+  }
+}
+
 const getAGameSuccess = function (data) {
   console.log(data)
   $('#account-page-message').show()
   $('#account-page-message').text('Game retrieved!')
   $('#account-page-message').css('background-color', '#fefefe')
-  // $('#gameOver-message').hide('slow')
+  $('#gameOver-message').hide('slow')
   // $('#gameOver-message').text('')
-  // $('#gameOver-message').css('background-color', '#fefefe')
+  $('#gameOver-message').css('background-color', '#fefefe')
   // $('#game-message').hide('slow')
   // $('#game-message').text('')
-  // $('#game-message').css('background-color', '#fefefe')
+  $('#game-message').css('background-color', '#fefefe')
   $('#current-game').text(store.gameId)
   $('#game-wrapper').show('slow')
   $('#get-game').find('input:text').val('')
 
   for (let i = 0; i < data.board.length; i++) {
-    const spotClass = '#mark' + i
+    const spotID = '#mark' + i
+    $(spotID).css('background-color', '#fefefe')
     if (data.board[i] === '') {
-      $(spotClass).text(' ')
+      $(spotID).text(' ')
     } else {
-      $(spotClass).text(data.board[i])
+      $(spotID).text(data.board[i])
     }
   }
   if (!data.over) {
@@ -113,12 +129,10 @@ const getAGameSuccess = function (data) {
     $('#gameOver-message').show()
     switch (data.winner) {
       case 'x':
-        $('#gameOver-message').text('Game Loaded! Player X won this game!')
-        $('#gameOver-message').css('background-color', '#5cb85c')
+        getGameWinMessage()
         break
       case 'o':
-        $('#gameOver-message').text('Game Loaded! Player O won this game!')
-        $('#gameOver-message').css('background-color', '#5cb85c')
+        getGameWinMessage()
         break
       case 'draw':
         $('#gameOver-message').text('Game Loaded! It was a draw!')

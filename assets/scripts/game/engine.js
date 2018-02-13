@@ -63,6 +63,12 @@ const loadApiGame = function (data) {
   crosses > aughts ? game.user = 'o' : game.user = 'x'
   console.log(game.user)
   whoWon()
+  // const winLine = findWin(game.board, game.winGroups, game.winner)
+  // if (winLine !== undefined) {
+  //   const winText = 'Game Loaded! Player ' + game.winner + ' won this game!'
+  //   gameUI.winMessage(winText, winLine)
+  //   debugger
+  // }
   // set visual board to match API board
   gameUI.getAGameSuccess(game)
 }
@@ -154,7 +160,8 @@ const moveEntry = function (user, index) {
     // update API game to over
     gameAPI.updateBoard(index, game.user, true)
     gameUI.movePlaySuccess('')
-    gameUI.winMessage(user + ' wins! Winning positions are: ' + winLine)
+    const winText = user + ' wins!'
+    gameUI.winMessage(winText, winLine)
   } else if (drawCheck(game.board)) {
     game.over = true
     // update API game to over
@@ -298,5 +305,6 @@ module.exports = {
   loadApiGame,
   whoWon,
   allGameStats,
-  drawCheck
+  drawCheck,
+  findWin
 }
