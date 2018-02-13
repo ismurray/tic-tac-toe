@@ -3,8 +3,8 @@
 const store = require('../store')
 const gameUI = require('../game/ui')
 
-
 const signUpSuccess = function (data) {
+  $('#account-message').show()
   $('#account-message').text('Signed up successfully!')
   $('#account-message').css('background-color', '#5cb85c')
   $('#sign-up-button').click()
@@ -13,6 +13,7 @@ const signUpSuccess = function (data) {
 }
 
 const signUpFailure = function (error) {
+  $('#account-message').show()
   $('#account-message').text('Error on signing up')
   $('#account-message').css('background-color', '#d9534f')
   $('#sign-up-button').click()
@@ -22,6 +23,7 @@ const signUpFailure = function (error) {
 }
 
 const signInSuccess = function (data) {
+  $('#account-message').show()
   $('#account-message').text('Signed in successfully!')
   $('#account-message').css('background-color', '#5cb85c')
   store.user = data.user
@@ -35,6 +37,7 @@ const signInSuccess = function (data) {
 }
 
 const signInFailure = function (error) {
+  $('#account-message').show()
   $('#account-message').text('Error on signing in')
   $('#account-message').css('background-color', '#d9534f')
   $('#sign-in-button').click()
@@ -61,6 +64,7 @@ const changePasswordFailure = function (error) {
 }
 
 const signOutSuccess = function () {
+  $('#account-message').show()
   $('#account-message').text('Signed out successfully!')
   $('#account-message').css('background-color', '#5cb85c')
   $('#auth-wrapper').show('slow')

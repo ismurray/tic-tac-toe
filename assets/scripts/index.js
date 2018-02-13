@@ -27,6 +27,7 @@ $(() => {
   numGameEvents.addHandlers()
   authEvents.addHandlers()
   $('#account-wrapper').hide()
+  $('#account-message').hide()
   $('#game-wrapper').hide()
   $('#numeric-game-wrapper').hide()
   $('#account-navbar').hide()
