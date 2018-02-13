@@ -11,6 +11,7 @@ const onShowAll = function () {
   $('#auth-wrapper').show()
   $('#account-wrapper').show()
   $('#game-wrapper').show()
+  $('#numeric-game-wrapper').show()
   $('#account-navbar').show()
 }
 
