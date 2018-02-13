@@ -23,6 +23,16 @@ const newGameReset = function () {
   }
 }
 
+const hideInputs = function () {
+  for (let i = 0; i < 9; i++) {
+    const spotID = '#numMark' + i
+    if ($(spotID).text() === '') {
+      const formInputTag = '#numForm' + i
+      $(formInputTag).hide()
+    }
+  }
+}
+
 const startGameSuccess = function (data) {
   $('#account-page-message').show()
   $('#account-page-message').text('You have started a game!')
@@ -33,5 +43,6 @@ const startGameSuccess = function (data) {
 
 module.exports = {
   newGameReset,
-  startGameSuccess
+  startGameSuccess,
+  hideInputs
 }

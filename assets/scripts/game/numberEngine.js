@@ -107,8 +107,8 @@ const play = function (board, user, index, input) {
     // update internal board
     board[index] = input
     // update visual board
-    const spotClass = '#numMark' + index
-    $(spotClass).text(input)
+    const spotID = '#numMark' + index
+    $(spotID).text(input)
     const formInputTag = '#numForm' + index
     $(formInputTag).hide()
     // update visual list of available moves
@@ -206,7 +206,7 @@ const moveEntry = function (user, index, input) {
     gameUI.movePlaySuccess('')
     const winText = user + ' wins!'
     gameUI.winMessage(winText, winLine, '#numMark')
-    console.log(user + ' wins! Winning positions are: ' + winLine)
+    numUI.hideInputs()
   } else if (drawCheck(game.board)) {
     game.over = true
     // update API game to over
