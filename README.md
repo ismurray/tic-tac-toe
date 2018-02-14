@@ -3,9 +3,9 @@
 Features:
   - Create an account with a unique login and password
   - Two Game Modes: Classic and Numeric Tic Tac Toe
-  - See how many games you've played in each game mode, your wins, losses, draws, and your win percentage. (Note: game ID's are not locked in as Classic or Numeric until the first move is played. Until then, they are listed as "Unassigned" in the Game Stats section)
-  - See a unique ID for every Classic mode game, which can be used to return to that game later
-  - When a Classic game is retrieved, see  an update on whether the game is over or not.
+  - Game Stats: See how many games you've played in each game mode, your wins, losses, draws, and your win percentage. (Note: game ID's are not locked in as Classic or Numeric until the first move is played. Until then, they are listed as "Unassigned" in the Game Stats section)
+  - Game Retrieval: See a unique ID for every Classic mode game, which can be used to return to that game later
+    - When a Classic game is retrieved, see  an update on whether the game is over or not.
     - If over, you can see who won, or whether it was a draw.
       - If unfinished, you can see whose turn it is, and pick up right where you left off!
 
@@ -32,17 +32,18 @@ Both game modes are played in a local, two-player format, with Player X (the one
 2. Create wire frames (see below)
 3. Write initial game engine to model a classic tic tac toe game. Runnable in the console.
   * Data structure: Each game is an object containing an array of 9 empty strings (to represent the game board), and a few key value pairs to store things like game state (over or not), the current player whose turn it is, a list of win conditions, and a unique ID number. This was modeled to be a similar format to the one used by the API.
-4. Create initial site UI, with 3 discreet views: Login page, Account Page, and Game page
-  * Login page: Sign up form, sign in forms
+4. Write User stories (see below) to help guide the development process and keep attention focused on one discreet feature at a time.
+5. Create initial site UI, with 3 discreet views: Login page, Account Page, and Game page
+  * Login page: Sign up form, sign in form
   * Account Page: Signout form
   * Game page: Visual tic tac toe board
-5. Tie Game Board UI to internal game engine
+6. Tie Game Board UI to internal game engine
   * Use jQuery to make click handlers, and to write to the game board
   * Create UI messages for feedback on successful/unsuccessful user actions
-6. Create account authentication API interactions: sign in, sign up, sign out, change password
+7. Create account authentication API interactions: sign in, sign up, sign out, change password
   * Test API with curl requests
   * Tie UI forms to ajax requests, follow up with user feedback via displayed messages
-7. Create game API requests: create new game, retrieve all stored games, update game after every move and upon endgame state
+8. Create game API requests: create new game, retrieve all stored games, update game after every move and upon endgame state
 
 With all Project requirements met, I began adding a number of bonus features:
 
@@ -60,7 +61,7 @@ With all Project requirements met, I began adding a number of bonus features:
   * Add colors, resize elements, smooth out overall design
   * Ensure all visual elements scale between a range of screen sizes and mobile devices
 4. Create new game mode: Numeric Tic Tac toe
-  *This process was similar to the development of the classic game mode:
+    *This process was similar to the development of the classic game mode:
     1. Internal game engine
     2. Visual UI
     3. Tie UI to internal logic
