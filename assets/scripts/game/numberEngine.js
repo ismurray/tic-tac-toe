@@ -113,7 +113,7 @@ const play = function (board, user, index, input) {
     // update visual list of available moves
     const printMoves = game[moves].map(string => parseInt(string))
     const movesClass = '#' + user + '-moves'
-    $(movesClass).text('Player' + user + '\'s moves: ' + printMoves)
+    $(movesClass).text('Player ' + user + '\'s moves: ' + printMoves)
     // update API board
     gameAPI.updateBoard(index, input, false)
     return board
