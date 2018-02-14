@@ -68,7 +68,6 @@ With all Project requirements met, I began adding a number of bonus features:
 5. Add stat tracking for numeric model
 6. Add more visual fine touches to make the design less clunky and continue finding and patching bugs
 
-With all Project requirements
 
 
 ## Wire Frames
@@ -89,8 +88,8 @@ Below are some of the initial user stories I made during the planning stage:
 11.	[Game UI] As a user, I should be able to see a visual telling me when the game ends
 12.	[Game UI] As a user, I should be able to see whether I won, lost or drew a game
 13.	[Game UI] As a user, I should be able to click a button to start a new game after a game ends
-14.	[GAME API] I should be able to have my games saved to my account
-15.	[GAME API] I should be able to retrieve games I have started/finished too see where I left off
+14.	[GAME API] As a user, I should be able to have my games saved to my account
+15.	[GAME API] As a user, I should be able to retrieve games I have started/finished too see where I left off
 
 
 ## Technologies Used
