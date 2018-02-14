@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic Tac Toe</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+
+      <div class="header-box">
+        <h1>Tic Tac World</h1>
+      </div>
+
+      <div class="container-fluid">
+
+      <!-- <form id="hide-all" class="border">
+        <fieldset>
+          <input type="submit" value="Hide All">
+        </fieldset>
+      </form>
+      <form id="show-all" class="border">
+        <fieldset>
+          <input type="submit" value="Show All">
+        </fieldset>
+      </form> -->
+
+
+      <nav class="navbar navbar-default" id="account-navbar">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- <a class="navbar-brand navbar-btn" href="#">Brand</a> -->
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- <ul class="nav navbar-nav">
+              <li>
+                <form class="navbar-form" id="start-game">
+                <button type="submit" class="blue-btn btn btn-default navbar-btn">New Game</button>
+                </form>
+              </li>
+            </ul> -->
+            <form class="navbar-form navbar-left" id="get-game">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Retrieve game by ID">
+              </div>
+              <button type="submit" class="blue-btn btn btn-default navbar-btn">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+
+              <li class="dropdown navbar-btn">
+                <a href="#" id="nav-text" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Change Password <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <form class="navbar-form navbar-left" id="change-password">
+                    <div class="form-group">
+                      <input type="password" name="passwords[old]" class="form-control" placeholder="Old Password">
+                      <input type="password" name="passwords[new]" class="form-control" placeholder="New Password">
+                    </div>
+                    <button type="submit" class="blue-btn btn btn-default navbar-btn">Submit</button>
+                  </form>
+                </ul>
+              </li>
+              <li>
+                <form class="navbar-form" id="sign-out">
+                <button type="submit" class="blue-btn btn btn-default navbar-btn">Sign Out</button>
+              </form>
+            </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+
+
+      <div id="auth-wrapper">
+        <h2>Sign in to Play!</h2>
+
+        <div class="col-md-3 col-sm-6 col-xs-8 panel panel-default" id="account-message">
+          <div class="col-md-6 col-sm-8 col-xs-12 message-container panel-body">
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-xs-12 center-block">
+            <!-- Button trigger modal -->
+            <button type="button" id="sign-in-button" class="btn btn-primary btn-lg auth-buttons" data-toggle="modal" data-target="#myModal">
+              Sign In
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Sign In to an Existing Account</h4>
+                  </div>
+                  <div class="modal-body">
+
+                    <form id="sign-in" class="border">
+                      <fieldset>
+                        <input type="text" name="credentials[email]" placeholder="Email">
+                        <input type="password" name="credentials[password]" placeholder="Password">
+                        <button type="submit" class="btn btn-primary btn">Sign In</button>
+                      </fieldset>
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 center-block">
+            <!-- Button trigger modal -->
+            <button type="button" id="sign-up-button" class="btn btn-primary btn-lg auth-buttons" data-toggle="modal" data-target="#signUpModal">
+              Sign Up
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Sign Up to Create An Account</h4>
+                  </div>
+                  <div class="modal-body">
+
+                    <form id="sign-up" class="border">
+                      <fieldset>
+                        <input type="text" name="credentials[email]" placeholder="Email">
+                        <input type="password" name="credentials[password]" placeholder="Password">
+                        <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+                        <button type="submit" class="btn btn-primary btn">Sign Up</button>
+                      </fieldset>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="account-wrapper">
+        <h2>Welcome!</h2>
+
+        <div class="col-md-6 col-sm-8 col-xs-12 panel panel-default" id="account-page-message">
+          <div class="col-md-6 col-sm-8 col-xs-12 message-container panel-body">
+
+          </div>
+        </div>
+
+
+
+
+        <div class="row">
+          <div class="col-xs-12 center-block">
+            <form id="start-playing-button">
+            <button type="submit" class="green-btn btn btn-primary btn-lg auth-buttons">
+              New Game: Classic Mode!
+            </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 center-block">
+            <form id="start-numeric-button">
+            <button type="submit" class="green-btn btn btn-primary btn-lg auth-buttons">
+              New Game: Numeric Mode!
+            </button>
+            </form>
+          </div>
+        </div>
+
+        <button class="btn btn-primary stats-drop-button center-block" type="button" data-toggle="collapse" data-target="#collapseClassic" aria-expanded="false" aria-controls="collapseClassic">
+          Your Game Stats:
+        </button>
+        <div class="collapse" id="collapseClassic">
+          <div class="stats-well col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-12 well">
+
+            <div class="row">
+              <ul class="col-sm-6 col-xs-12">
+                 <li>Total games: <span class="total-games"></span></li>
+                 <li>Total Unassigned games: <span class="total-unassigned"></span></li>
+              </ul>
+          </div>
+          <div class="row">
+              <div class="col-sm-6 col-xs-12">
+                <ul>
+                  <li class="dropdown-header">Classic Mode:</li>
+                  <li> Total Classic games: <span id="total-games-classic"></span></li>
+                  <li> Unfinished games: <span id="active-games-classic"></span></li>
+                  <li> Finished games: <span id="ended-games-classic"></span></li>
+                  <li> Games won: <span id="games-won-classic"></span></li>
+                  <li> Games lost: <span id="games-lost-classic"></span></li>
+                  <li> Games drawn: <span id="games-drawn-classic"></span></li>
+                  <li> Winrate: <span id="winrate-classic"></span>%</li>
+                </ul>
+              </div>
+              <div class="col-sm-6 col-xs-12">
+                <ul>
+                <li class="dropdown-header">Numeric Mode:</li>
+                <li> Total Numeric games: <span id="total-games-numeric"></span></li>
+                  <li> Unfinished games: <span id="active-games-numeric"></span></li>
+                  <li> Finished games: <span id="ended-games-numeric"></span></li>
+                  <li> Games won: <span id="games-won-numeric"></span></li>
+                  <li> Games lost: <span id="games-lost-numeric"></span></li>
+                  <li> Games drawn: <span id="games-drawn-numeric"></span></li>
+                  <li> Winrate: <span id="winrate-numeric"></span>%</li>
+                </ul>
+              </div>
+            </div>
+
+            <form id="get-all-games" class="border">
+              <fieldset>
+                <button type="submit" class="blue-btn btn btn-default navbar-btn">Update</button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+
+        <div class="clearfix visible-xs-block"></div>
+        <div class="row game-messages">
+
+        <div class="col-md-6 col-sm-8 col-xs-12 message-container panel panel-default" id="game-message">
+          <div class="col-md-6 col-sm-8 col-xs-12 message-container panel-body">
+          </div>
+        </div>
+
+
+        <div class="col-md-6 col-sm-8 col-xs-12 panel panel-default" id="gameOver-message">
+          <div class="col-md-6 col-sm-8 col-xs-12 message-container panel-body">
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div id="game-wrapper">
+
+          <h2>Classic Tic Tac Toe:</h2>
+
+
+
+
+          <div class="col-md-12 wrapper">
+            <div class="row board-row">
+              <div class="col-xs-4 boardSpot mark0" data-id="0" id="mark0"> </div>
+              <div class="col-xs-4 boardSpot mark1" data-id="1" id="mark1"> </div>
+              <div class="col-xs-4 boardSpot mark2" data-id="2" id="mark2"> </div>
+            </div>
+            <div class="row board-row">
+              <div class="col-xs-4 boardSpot mark3" data-id="3" id="mark3"> </div>
+              <div class="col-xs-4 boardSpot mark4" data-id="4" id="mark4"> </div>
+              <div class="col-xs-4 boardSpot mark5" data-id="5" id="mark5"> </div>
+            </div>
+            <div class="row board-row">
+              <div class="col-xs-4 boardSpot mark6" data-id="6" id="mark6"> </div>
+              <div class="col-xs-4 boardSpot mark7" data-id="7" id="mark7"> </div>
+              <div class="col-xs-4 boardSpot mark8" data-id="8" id="mark8"> </div>
+            </div>
+
+          </div>
+          <p>Current Game ID: <span id="current-game"></span></p>
+
+          <!-- <form id="return-to-acct" class="border">
+            <fieldset>
+              <input type="submit" value="Return to Account Page">
+            </fieldset>
+          </form> -->
+
+          <button class="btn btn-primary stats-drop-button center-block" type="button" data-toggle="collapse" data-target="#collapse-classic-instructions" aria-expanded="false" aria-controls="collapse-classic-instructions">
+            Instructions
+          </button>
+          <div class="collapse" id="collapse-classic-instructions">
+            <div class="stats-well col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-12 well">
+
+            <div class="row">
+                <div class="col-xs-12">
+                  <p>Tic-tac-toe is a quick and easy game for two players who
+                    take turns marking the spaces in a 3×3 grid.</p>
+                  <p>The first player marks their squares with x's, and the second player
+                    marks their squares with o's.</p>
+                  <p> The player who succeeds in placing three of their marks in a
+                    horizontal, vertical, or diagonal row wins the game.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="numeric-game-wrapper">
+
+          <h2>Numeric Tic Tac Toe:</h2>
+
+
+          <div class="col-md-12 wrapper">
+            <div class="row board-row">
+              <div class="col-xs-4 mark0">
+                <p  id="numMark0"></p>
+                <form id="numForm0" class="border numBoardSpot" data-id="0">
+                  <fieldset>
+                    <input type="text" placeholder=" " class="num-form-input">
+                    <input type="submit" value="Submit">
+                  </fieldset>
+                </form>
+              </div>
+              <div class="col-xs-4 mark1">
+                <p  id="numMark1"></p>
+                <form id="numForm1" class="border numBoardSpot" data-id="1">
+
+                  <fieldset>
+                    <input type="text" placeholder=" " class="num-form-input">
+                    <input type="submit" value="Submit">
+                  </fieldset>
+                </form>
+              </div>
+              <div class="col-xs-4 mark2">
+                <p  id="numMark2"></p>
+                <form id="numForm2" class="border numBoardSpot" data-id="2">
+                  <fieldset>
+                    <input type="text" placeholder=" " class="num-form-input">
+                    <input type="submit" value="Submit">
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+            <div class="row board-row">
+              <div class="col-xs-4 mark3">
+                <p  id="numMark3"></p>
+                <form id="numForm3" class="border numBoardSpot" data-id="3">
+                  <fieldset>
+                    <input type="text" placeholder=" " class="num-form-input">
+                    <input type="submit" value="Submit">
+                  </fieldset>
+                </form>
+              </div>
+              <div class="col-xs-4 mark4">
+                <p  id="numMark4"></p>
+                <form id="numForm4" class="border numBoardSpot" data-id="4">
+                  <fieldset>
+                    <input type="text" placeholder=" " class="num-form-input">
+                    <input type="submit" value="Submit">
+                  </fieldset>
+                </form>
+              </div>
+              <div class="col-xs-4 mark5">
+                <p  id="numMark5"></p>
+                <form id="numForm5" class="border numBoardSpot" data-id="5">
+                  <fieldset>
+                    <input type="text" placeholder=" " class="num-form-input">
+                    <input type="submit" value="Submit">
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+            <div class="row board-row">
+              <div class="col-xs-4 mark6">
+                <p  id="numMark6"></p>
+                <form id="numForm6" class="border numBoardSpot" data-id="6">
+                  <fieldset>
+                    <input type="text" placeholder=" " class="num-form-input">
+                    <input type="submit" value="Submit">
+                  </fieldset>
+                </form>
+              </div>
+              <div class="col-xs-4 mark7">
+                <p  id="numMark7"></p>
+                <form id="numForm7" class="border numBoardSpot" data-id="7">
+                  <fieldset>
+                    <input type="text" placeholder=" " class="num-form-input">
+                    <input type="submit" value="Submit">
+                  </fieldset>
+                </form>
+              </div>
+              <div class="col-xs-4 mark8">
+                <p  id="numMark8"></p>
+                <form id="numForm8" class="border numBoardSpot"data-id="8">
+                  <fieldset>
+                    <input type="text" placeholder=" " class="num-form-input">
+                    <input type="submit" value="Submit">
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+
+
+
+
+            <div class="row">
+              <div class="col-md-6 col-sm-8 col-xs-12 panel panel-default" id="x-moves">
+                <div class="col-md-6 col-sm-8 col-xs-12 message-container panel-body">
+                  Player x's moves: 1,3,5,7,9
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-8 col-xs-12 panel panel-default" id="o-moves">
+                <div class="col-md-6 col-sm-8 col-xs-12 message-container panel-body">
+                  Player o's moves: 2,4,6,8,10
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary stats-drop-button center-block" type="button" data-toggle="collapse" data-target="#collapse-num-instructions" aria-expanded="false" aria-controls="collapse-num-instructions">
+            Instructions
+          </button>
+          <div class="collapse" id="collapse-num-instructions">
+            <div class="stats-well col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-12 well">
+
+            <div class="row">
+                <div class="col-xs-12">
+                  <p>Numerical Tic Tac Toe is a variation invented by the
+                  mathematician Ronald Graham. The numbers 1 to 10 are used in
+                  this game instead of x's and o's.
+                  <p>The first player (Player x)
+                  plays with the odd numbers, the second player (Player o) plays
+                  with the even numbers. All numbers can be used only once.</p>
+                  <p>The player who puts down a 3rd number in a line which adds up to
+                  15 wins!</p>
+
+                  <p>Hint: You'll want to keep track of which numbers you and
+                    your opponent have left, and make plays using each other's
+                    placed numbers.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <p>Current Game ID: <span id="current-game"></span></p> -->
+
+          <!-- <form id="return-to-acct" class="border">
+            <fieldset>
+              <input type="submit" value="Return to Account Page">
+            </fieldset>
+          </form> -->
+
+        </div>
+    </div>
+
+
+    <div class="footer-box">
+      <span class="copyright">Copyright 2018 	&copy;</span>
+      <span class="info">Made By Ian Murray</span>
+    </div>
+    </body>
+</html>
