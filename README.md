@@ -26,10 +26,49 @@ Both game modes are played in a local, two-player format, with Player X (the one
 
 
 
-
-
-
 ## Development Process
+
+1. Read through Project requirements and API documentation to get a clear idea of project goals, and provide a framework for creating a UI and modeling the game engine
+2. Create wire frames (see below)
+3. Write initial game engine to model a classic tic tac toe game. Runnable in the console.
+  1. Data structure: Each game is an object containing an array of 9 empty strings (to represent the game board), and a few key value pairs to store things like game state (over or not), the current player whose turn it is, a list of win conditions, and a unique ID number. This was modeled to be a similar format to the one used by the API.
+4. Create initial site UI, with 3 discreet views: Login page, Account Page, and Game page
+  1. Login page: Sign up form, sign in forms
+  2. Account Page: Signout form
+  3. Game page: Visual tic tac toe board
+5. Tie Game Board UI to internal game engine
+  1. Use jQuery to make click handlers, and to write to the game board
+  2. Create UI messages for feedback on successful/unsuccessful user actions
+6. Create account authentication API interactions: sign in, sign up, sign out, change password
+  1. Test API with curl requests
+  2. Tie UI forms to ajax requests, follow up with user feedback via displayed messages
+7. Create game API requests: create new game, retrieve all stored games, update game after every move and upon endgame state
+
+With all Project requirements met, I began adding a number of bonus features:
+
+1. Add functionality to retrieve a finished/unfinished game by ID
+  1. Establish method to retrieve the unique game data from the API
+  2. Write functions in the game engine to store the game locally and determine whether it was finished or not
+  3. If not, determine whose turn it is, and display it to the UI in a playable state
+  4. If finished, parse the game board data to determine which player won, or if it was a draw, and display the results in the UI
+2. Create game stats section, and write functions in the game engine to parse an array of every game board retrieved from the API to determine a number of stats: total games, finished games, unfinished games, wins, losses, draws, and win percentage
+  1. Add button to refresh the data from the server and update the display of these stats
+3. Improve visual design
+  1. Move most account actions to a navbar, freeing up space to consolidate the game and account page views
+  2. Move Sign in/up forms to modals to clean up landing page
+  3. Make board larger
+  4. Add colors, resize elements, smooth out overall design
+  5. Ensure all visual elements scale between a range of screen sizes and mobile devices
+4. Create new game mode: Numeric Tic Tac toe
+  *This process was similar to the development of the classic game mode:
+    1. Internal game engine
+    2. Visual UI
+    3. Tie UI to internal logic
+    4. Tie UI and internal logic to the API
+5. Add stat tracking for numeric model
+6. Add more visual fine touches to make the design less clunky and continue finding and patching bugs
+
+With all Project requirements
 
 
 ## Wire Frames
