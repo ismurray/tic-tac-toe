@@ -8,6 +8,7 @@ Features:
     - When a Classic game is retrieved, see  an update on whether the game is over or not.
     - If over, you can see who won, or whether it was a draw.
       - If unfinished, you can see whose turn it is, and pick up right where you left off!
+  - Responsive design: fully functional on desktop and mobile devices
 
 ## Rules
 
